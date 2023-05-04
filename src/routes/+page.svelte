@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import type { PageData } from './$types';
+	// import type { PageData } from './$types';
 
-	export let data: PageData;
+	// export let data: PageData;
+	export let data;
 </script>
 
 <p>This page is protected and can only be accessed by authenticated users.</p>
@@ -11,5 +12,5 @@
 </pre>
 
 <form use:enhance method="post">
-	<input type="submit" class="button" value="Sign out" />
+	<input type="submit" class="cursor-pointer border border-black px-2 py-1" value="Sign out" />
 </form>

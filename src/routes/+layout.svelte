@@ -7,6 +7,8 @@
 </svelte:head>
 
 <div class="max-w-4xl w-fit flex flex-col mx-auto">
-	<h1><a href="/">svelteKitMaDrS</a></h1>
+	<div class="text-center font-bold text-4xl">
+		<h1><a href="/">svelteKitMaDrS</a></h1>
+	</div>
 	<slot />
 </div>
