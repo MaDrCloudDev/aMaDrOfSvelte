@@ -3,5 +3,9 @@
 </script>
 
 <form use:enhance method="post">
-	<input type="submit" class="cursor-pointer border border-black px-2 py-1" value="Sign out" />
+	<input
+		type="submit"
+		class="cursor-pointer border border-white texte-white mt-1 px-2 py-1 hover:text-black hover:bg-white"
+		value="Sign out"
+	/>
 </form>

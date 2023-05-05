@@ -10,7 +10,7 @@
 		<h2>Sign in</h2>
 		<a
 			href="/api/oauth?provider=github"
-			class="border border-black px-2 py-1 hover:text-white hover:bg-black">Continue with Github</a
+			class="border border-white px-2 py-1 hover:text-black hover:bg-white">Continue with Github</a
 		>
 		<p class="center">or</p>
 	</section>
@@ -24,7 +24,7 @@
 				<input
 					type="submit"
 					value="Continue"
-					class="border border-black px-2 py-1 mt-2 mb-1 cursor-pointer hover:text-white hover:bg-black"
+					class="border text-white border-white px-2 py-1 mt-2 mb-1 cursor-pointer hover:text-black hover:bg-white"
 				/>
 			</div>
 		</form>
