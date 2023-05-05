@@ -5,7 +5,7 @@
 <form use:enhance method="post">
 	<input
 		type="submit"
-		class="cursor-pointer border border-white texte-white mt-1 px-2 py-1 hover:text-black hover:bg-white"
+		class="cursor-pointer border border-white texte-white mt-1 px-2 py-1 hover:text-[#fffb00] hover:border-[#328eef]"
 		value="Sign out"
 	/>
 </form>

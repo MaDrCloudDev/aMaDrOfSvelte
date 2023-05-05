@@ -8,7 +8,7 @@
 
 <div class="max-w-4xl w-fit flex flex-col mx-auto">
 	<div class="text-center font-bold text-4xl">
-		<h1><a href="/">svelteKitMaDrS</a></h1>
+		<h1 class="text-[#328eef] hover:text-[#fffb00]"><a href="/">svelteKitMaDrS</a></h1>
 	</div>
 	<slot />
 </div>

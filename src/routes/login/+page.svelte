@@ -5,12 +5,13 @@
 	export let form;
 </script>
 
-<div class="mt-[16rem]">
+<div class="mt-[14rem]">
 	<section class="text-center flex flex-col gap-1 w-fit mx-auto">
 		<h2>Sign in</h2>
 		<a
 			href="/api/oauth?provider=github"
-			class="border border-white px-2 py-1 hover:text-black hover:bg-white">Continue with Github</a
+			class="border border-white px-2 py-1 hover:border-[#328eef] hover:text-[#fffb00]"
+			>Continue with Github</a
 		>
 		<p class="center">or</p>
 	</section>
@@ -24,7 +25,7 @@
 				<input
 					type="submit"
 					value="Continue"
-					class="border text-white border-white px-2 py-1 mt-2 mb-1 cursor-pointer hover:text-black hover:bg-white"
+					class="border text-white border-white px-2 py-1 mt-2 mb-1 cursor-pointer hover:text-[#fffb00] hover:border-[#328eef]"
 				/>
 			</div>
 		</form>
