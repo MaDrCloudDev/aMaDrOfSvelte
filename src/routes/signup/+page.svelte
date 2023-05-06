@@ -1,39 +1,23 @@
 <script lang="ts">
+	import { Button } from 'flowbite-svelte';
 	import { enhance } from '$app/forms';
-
+	import { Label, Input } from 'flowbite-svelte';
 	// export let form: { message?: string };
 	export let form;
 </script>
 
-<div class="mt-[14rem]">
-	<section class="text-center flex flex-col w-fit mx-auto gap-1">
-		<h2>Create an account</h2>
-		<a
-			href="/api/oauth?provider=github"
-			class="border border-white px-2 py-1 hover:text-[#fffb00] hover:border-[#328eef]"
-			>Continue with Github</a
-		>
-		<p class="">or</p>
-	</section>
-	<section class="flex justify-center">
-		<form method="post" use:enhance>
-			<label for="username">username</label><br />
-			<input id="username" name="username" class="border border-black" /><br />
-			<label for="password">password</label><br />
-			<input type="password" id="password" name="password" class="border border-black" /><br />
-			<div class="text-center">
-				<input
-					type="submit"
-					value="Continue"
-					class="border border-white text-white px-2 py-1 mt-2 mb-1 cursor-pointer hover:text-[#fffb00] hover:border-[#328eef]"
-				/>
-			</div>
-		</form>
-	</section>
-	<section class="text-center">
-		{#if form?.message}
-			<p class="error">{form.message || ''}</p>
-		{/if}
-		<a href="/login" class="hover:text-[#328eef]">Sign in</a>
-	</section>
-</div>
+<h2>Create an account</h2>
+<a href="/api/oauth?provider=github"><Button color="dark">Continue with Github</Button></a>
+<p class="">or</p>
+<form method="post" use:enhance>
+	<Label for="username">username</Label>
+	<Input id="username" name="username" />
+	<Label for="password">password</Label>
+	<Input type="password" id="password" name="password" />
+	<Input type="submit" value="Continue" />
+</form>
+{#if form?.message}
+	<p class="error">{form.message || ''}</p>
+{/if}
+
+<a href="/login"><Button color="dark">Sign in</Button></a>

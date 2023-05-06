@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { Label, Input } from 'flowbite-svelte';
 	// import type { PageData } from './$types';
 
 	// export let data: PageData;
@@ -12,9 +13,5 @@
 </pre>
 
 <form use:enhance method="post">
-	<input
-		type="submit"
-		class="cursor-pointer border border-white text-white mt-1 px-2 py-1 hover:text-[#fffb00] hover:border-[#328eef]"
-		value="Sign out"
-	/>
+	<Input type="submit" value="Sign out" class="cursor-pointer" />
 </form>
