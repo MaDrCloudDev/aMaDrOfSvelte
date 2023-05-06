@@ -35,7 +35,7 @@
 		{#if user}
 			<NavLi href="">
 				<form use:enhance method="post">
-					<input type="submit" value="Sign out" class="cursor-pointer hover:bg-gray-100" />
+					<input type="submit" value="Sign out" class="cursor-pointer" />
 				</form></NavLi
 			>
 		{:else}
