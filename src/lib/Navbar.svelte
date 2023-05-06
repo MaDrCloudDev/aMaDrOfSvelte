@@ -25,17 +25,15 @@
 	</NavBrand>
 	<NavHamburger on:click={toggle} />
 	<NavUl {hidden}>
-		<NavLi href="/" active={true}>Home</NavLi>
 		<NavLi id="nav-menu1" class="cursor-pointer"><Chevron aligned>Dropdown</Chevron></NavLi>
-		<NavLi href="/services">Services</NavLi>
-		<NavLi href="/pricing">Pricing</NavLi>
+		<NavLi href="/projects">Projects</NavLi>
+		<NavLi href="/blog">Blog</NavLi>
 		<NavLi href="/contact">Contact</NavLi>
+		<NavLi href="/contact">Login</NavLi>
 		<Dropdown triggeredBy="#nav-menu1" class="w-44 z-20">
-			<DropdownItem>Dashboard</DropdownItem>
-			<DropdownItem>Settings</DropdownItem>
-			<DropdownItem>Earnings</DropdownItem>
-			<DropdownDivider />
-			<DropdownItem>Sign out</DropdownItem>
+			<DropdownItem>Projects</DropdownItem>
+			<DropdownItem>Blog</DropdownItem>
+			<DropdownItem>Contact</DropdownItem>
 		</Dropdown>
 	</NavUl>
 </Navbar>

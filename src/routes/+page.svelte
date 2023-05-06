@@ -7,11 +7,14 @@
 	export let data;
 </script>
 
-<p>This page is protected and can only be accessed by authenticated users.</p>
-<pre class="code">
+<container class="w-fit mx-auto">
+	<!-- component -->
+	<p>This page is protected and can only be accessed by authenticated users.</p>
+	<pre class="code">
 {JSON.stringify(data.user, null, 2)}
 </pre>
-
-<form use:enhance method="post">
-	<Input type="submit" value="Sign out" class="cursor-pointer" />
-</form>
+	<form use:enhance method="post">
+		<Input type="submit" value="Sign out" class="cursor-pointer hover:bg-gray-100" />
+	</form>
+	<!-- component -->
+</container>

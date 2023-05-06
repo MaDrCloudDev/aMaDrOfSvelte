@@ -7,7 +7,7 @@
 	<title>svelteKitMaDrs | MaDr</title>
 </svelte:head>
 
-<Navbar />
-<div class="max-w-4xl w-fit flex flex-col mx-auto">
+<div class="max-w-5xl flex flex-col mx-auto">
+	<Navbar />
 	<slot />
 </div>
