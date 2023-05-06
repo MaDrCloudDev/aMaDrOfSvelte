@@ -1,4 +1,5 @@
 <script>
+	import { enhance } from '$app/forms';
 	import {
 		Navbar,
 		NavBrand,
@@ -10,6 +11,8 @@
 		Chevron,
 		DropdownDivider
 	} from 'flowbite-svelte';
+
+	export let user;
 </script>
 
 <Navbar let:hidden let:toggle>
@@ -29,7 +32,15 @@
 		<NavLi href="/projects">Projects</NavLi>
 		<NavLi href="/blog">Blog</NavLi>
 		<NavLi href="/contact">Contact</NavLi>
-		<NavLi href="/contact">Login</NavLi>
+		{#if user}
+			<NavLi href="">
+				<form use:enhance method="post">
+					<input type="submit" value="Sign out" class="cursor-pointer hover:bg-gray-100" />
+				</form></NavLi
+			>
+		{:else}
+			<NavLi href="/login">Login</NavLi>
+		{/if}
 		<Dropdown triggeredBy="#nav-menu1" class="w-44 z-20">
 			<DropdownItem>Projects</DropdownItem>
 			<DropdownItem>Blog</DropdownItem>
