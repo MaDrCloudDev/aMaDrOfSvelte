@@ -22,7 +22,9 @@
 			class="mr-3 h-6 sm:h-9"
 			alt="Flowbite Logo"
 		/>
-		<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+		<span
+			class="self-center whitespace-nowrap text-xl font-semibold dark:text-white hover:text-[#328eef]"
+		>
 			svelteKitMaDrS
 		</span>
 	</NavBrand>
@@ -42,9 +44,19 @@
 			<NavLi href="/login">Login</NavLi>
 		{/if}
 		<Dropdown triggeredBy="#nav-menu1" class="w-44 z-20">
-			<DropdownItem>Projects</DropdownItem>
-			<DropdownItem>Blog</DropdownItem>
-			<DropdownItem>Contact</DropdownItem>
+			<DropdownItem href="/projects">Projects</DropdownItem>
+			<DropdownItem href="/blog">Blog</DropdownItem>
+			<DropdownItem href="/contact">Contact</DropdownItem>
+			<DropdownDivider />
+			<DropdownItem href="">
+				{#if user}
+					<form use:enhance method="post">
+						<input type="submit" value="Sign out" class="cursor-pointer" />
+					</form>
+				{:else}
+					<NavLi href="/login">Login</NavLi>
+				{/if}
+			</DropdownItem>
 		</Dropdown>
 	</NavUl>
 </Navbar>

@@ -1,14 +1,18 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { Label, Input } from 'flowbite-svelte';
+	import Logo from '$lib/Logo.svelte';
 	// import type { PageData } from './$types';
 
 	// export let data: PageData;
 	export let data;
 </script>
 
-<container class="w-fit mx-auto">
+<container class="w-fit mx-auto p-4">
 	<!-- component -->
+	<div class="flex justify-center">
+		<Logo />
+	</div>
 	<p>This page is protected and can only be accessed by authenticated users.</p>
 	<pre class="code">
 {JSON.stringify(data.user, null, 2)}
