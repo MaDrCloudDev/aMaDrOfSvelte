@@ -15,20 +15,20 @@
 	export let user;
 </script>
 
-<Navbar let:hidden let:toggle class="max-w-5xl mx-auto">
+<Navbar let:hidden let:toggle>
 	<NavBrand href="/" on:click={toggle}>
 		<img
 			src="https://raw.githubusercontent.com/MaDrCloudDev/projectsImages/87a496345380971e12ea45b8e24bd23ae64aa25e/MaDrLogo.svg"
 			class="mr-3 h-6 sm:h-9"
 			alt="Flowbite Logo"
 		/>
-		<span
+		<h1
 			class="self-center whitespace-nowrap text-xl font-semibold dark:text-white hover:text-[#328eef]"
 			on:click={toggle}
 			on:keydown={toggle}
 		>
 			svelteKitMaDrS
-		</span>
+		</h1>
 	</NavBrand>
 	<NavHamburger on:click={toggle} />
 	<NavUl {hidden}>
@@ -37,9 +37,14 @@
 		<NavLi href="/blog" on:click={toggle}>Blog</NavLi>
 		<NavLi href="/contact" on:click={toggle}>Contact</NavLi>
 		{#if user}
-			<li on:keydown={toggle}>
+			<li>
 				<form use:enhance method="post">
-					<input type="submit" value="Sign out" class="cursor-pointer hover:text-blue-700" />
+					<input
+						type="submit"
+						value="Sign out"
+						class="cursor-pointer hover:text-blue-700"
+						on:keydown={toggle}
+					/>
 				</form>
 			</li>
 		{:else}
