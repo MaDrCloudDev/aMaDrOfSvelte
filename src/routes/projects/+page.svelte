@@ -3,7 +3,8 @@
 	export let data;
 	console.log(data);
 
-	let { products } = data;
+	let { users } = data.users;
+	console.log(users);
 </script>
 
 <container class="grid sm:grid-cols-2 md:grid-cols-3 gap-2 p-4">
@@ -12,7 +13,7 @@
 			This page is protected and can only be accessed by authenticated users.
 		</p>
 	</div>
-	<!-- {#each $products as product}
-		<Card />
-	{/each} -->
+	{#each users as user}
+		<Card imageUrl={user.image} title={user.username} description={user.address.address} />
+	{/each}
 </container>

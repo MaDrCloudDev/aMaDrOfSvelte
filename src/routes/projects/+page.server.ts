@@ -3,15 +3,13 @@ import { auth } from '$lib/server/lucia';
 
 /** @type {import('./$types').PageServerLoad} */
 export const load = async () => {
-	console.log('Server Load Ran');
-	const fetchProducts = async () => {
-		const res = await fetch(`https://dummyjson.com/products`);
-		const data = await res.json();
-		return data.results;
+	const fetchUsers = async () => {
+		const res = await fetch(`https://dummyjson.com/users`);
+		const users = await res.json();
+		return users;
 	};
-
 	return {
-		projects: fetchProducts()
+		users: await fetchUsers()
 	};
 };
 
