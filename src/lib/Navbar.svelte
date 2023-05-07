@@ -15,7 +15,7 @@
 	export let user;
 </script>
 
-<Navbar let:hidden let:toggle>
+<Navbar let:hidden let:toggle class="max-w-5xl mx-auto">
 	<NavBrand href="/" on:click={toggle}>
 		<img
 			src="https://raw.githubusercontent.com/MaDrCloudDev/projectsImages/87a496345380971e12ea45b8e24bd23ae64aa25e/MaDrLogo.svg"
@@ -43,7 +43,8 @@
 				</form>
 			</li>
 		{:else}
-			<NavLi href="/login" on:click={toggle}>Login</NavLi>
+			<NavLi href="/login" on:click={toggle} class="cursor-pointer hover:text-blue-700">Login</NavLi
+			>
 		{/if}
 		<Dropdown triggeredBy="#nav-menu1" class="w-44 z-20">
 			<DropdownItem href="/projects" on:click={toggle}>Projects</DropdownItem>
