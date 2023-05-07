@@ -37,9 +37,9 @@
 		<NavLi href="/blog" on:click={toggle}>Blog</NavLi>
 		<NavLi href="/contact" on:click={toggle}>Contact</NavLi>
 		{#if user}
-			<li on:click={toggle} on:keydown={toggle}>
+			<li on:keydown={toggle}>
 				<form use:enhance method="post">
-					<input type="submit" value="Sign out" class="cursor-pointer" />
+					<input type="submit" value="Sign out" class="cursor-pointer hover:text-blue-700" />
 				</form>
 			</li>
 		{:else}
