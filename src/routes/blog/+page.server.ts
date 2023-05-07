@@ -1,6 +1,18 @@
 import { redirect, type Actions, fail } from '@sveltejs/kit';
 import { auth } from '$lib/server/lucia';
 
+/** @type {import('./$types').PageServerLoad} */
+export const load = async () => {
+	const fetchPosts = async () => {
+		const res = await fetch(`https://dummyjson.com/posts`);
+		const posts = await res.json();
+		return posts;
+	};
+	return {
+		posts: await fetchPosts()
+	};
+};
+
 export const actions: Actions = {
 	// signout
 	default: async ({ locals }) => {

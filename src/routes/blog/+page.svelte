@@ -1,5 +1,9 @@
 <script>
 	import Post from '$lib/Post.svelte';
+	export let data;
+
+	let { posts } = data.posts;
+	console.log(posts);
 </script>
 
 <container class="grid md:grid-cols-2 sm:p-4 gap-2 mx-auto place-items-center">
@@ -8,10 +12,7 @@
 			This page is protected and can only be accessed by authenticated users.
 		</p>
 	</div>
-	<Post />
-	<Post />
-	<Post />
-	<Post />
-	<Post />
-	<Post />
+	{#each posts as post}
+		<Post title={post.title} description={post.body} />
+	{/each}
 </container>
