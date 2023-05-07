@@ -9,11 +9,15 @@
 </script>
 
 <container class="w-fit mx-auto p-4">
+	<div class="text-center">
+		<p class="font-bold text-md sm:text-2xl mb-2">
+			This page is protected and can only be accessed by authenticated users.
+		</p>
+	</div>
 	<!-- component -->
 	<div class="flex justify-center">
 		<Logo />
 	</div>
-	<p>This page is protected and can only be accessed by authenticated users.</p>
 	<pre class="code">
 {JSON.stringify(data.user, null, 2)}
 </pre>

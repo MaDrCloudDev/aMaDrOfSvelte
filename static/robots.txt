@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://madr.io/sitemap.xml

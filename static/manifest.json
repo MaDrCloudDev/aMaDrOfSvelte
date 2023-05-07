@@ -1,0 +1,30 @@
+{
+	"name": "MaDr.io",
+	"short_name": "MaDr",
+    "theme_color": "#328eef",
+    "background_color": "#000000",
+    "display": "standalone",
+	"id": "https://www.madr.io",
+	"start_url": "/",
+	"description": "Personal portfolio of MaDrCloudDev.",
+	"protocol_handlers": [
+		{
+		  "protocol": "mailto",
+		  "url": "/mail"
+		}
+	  ],
+	"icons": [
+		{
+			"src": "/android-chrome-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/android-chrome-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "maskable"
+		}
+	],
+    "categories": ["MaDr", "MaDrCloudDev", "webdev", "Web Development", "HTML5", "CSS3", "JavaScript", "TypeScript", "SvelteKit", "Linux", "Svelte", "Matthew Drish", "Databases", "SQL", "NoSQL", "MongoDB", "React", "Next.js", "tRPC", "T3 Stack", "TailwindCSS", "Astro", "Prisma", "PlanetScale", "Vercel", "Netlify", "Cloudflare", "Jamstack", "Figma", "Cloud", "Cloud Development", "Cloud Tools", "Cloud Databases" ]
+}

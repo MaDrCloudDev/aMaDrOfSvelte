@@ -16,7 +16,7 @@
 </script>
 
 <Navbar let:hidden let:toggle>
-	<NavBrand href="/">
+	<NavBrand href="/" on:click={toggle}>
 		<img
 			src="https://raw.githubusercontent.com/MaDrCloudDev/projectsImages/87a496345380971e12ea45b8e24bd23ae64aa25e/MaDrLogo.svg"
 			class="mr-3 h-6 sm:h-9"
@@ -24,6 +24,8 @@
 		/>
 		<span
 			class="self-center whitespace-nowrap text-xl font-semibold dark:text-white hover:text-[#328eef]"
+			on:click={toggle}
+			on:keydown={toggle}
 		>
 			svelteKitMaDrS
 		</span>
@@ -31,28 +33,30 @@
 	<NavHamburger on:click={toggle} />
 	<NavUl {hidden}>
 		<NavLi id="nav-menu1" class="cursor-pointer"><Chevron aligned>Dropdown</Chevron></NavLi>
-		<NavLi href="/projects">Projects</NavLi>
-		<NavLi href="/blog">Blog</NavLi>
-		<NavLi href="/contact">Contact</NavLi>
+		<NavLi href="/projects" on:click={toggle}>Projects</NavLi>
+		<NavLi href="/blog" on:click={toggle}>Blog</NavLi>
+		<NavLi href="/contact" on:click={toggle}>Contact</NavLi>
 		{#if user}
-			<NavLi href="">
+			<NavLi href="" on:click={toggle}>
 				<form use:enhance method="post">
 					<input type="submit" value="Sign out" class="cursor-pointer" />
 				</form></NavLi
 			>
 		{:else}
-			<NavLi href="/login">Login</NavLi>
+			<NavLi href="/login" on:click={toggle}>Login</NavLi>
 		{/if}
 		<Dropdown triggeredBy="#nav-menu1" class="w-44 z-20">
-			<DropdownItem href="/projects">Projects</DropdownItem>
-			<DropdownItem href="/blog">Blog</DropdownItem>
-			<DropdownItem href="/contact">Contact</DropdownItem>
+			<DropdownItem href="/projects" on:click={toggle}>Projects</DropdownItem>
+			<DropdownItem href="/blog" on:click={toggle}>Blog</DropdownItem>
+			<DropdownItem href="/contact" on:click={toggle}>Contact</DropdownItem>
 			<DropdownDivider />
-			<DropdownItem href="">
+			<DropdownItem href="" on:click={toggle}>
 				{#if user}
-					<form use:enhance method="post">
-						<input type="submit" value="Sign out" class="cursor-pointer" />
-					</form>
+					<NavLi href="" on:click={toggle}>
+						<form use:enhance method="post">
+							<input type="submit" value="Sign out" class="cursor-pointer" />
+						</form></NavLi
+					>
 				{:else}
 					<NavLi href="/login">Login</NavLi>
 				{/if}
