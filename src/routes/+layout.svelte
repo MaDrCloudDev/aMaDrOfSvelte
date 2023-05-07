@@ -11,6 +11,8 @@
 </svelte:head>
 
 <div class="max-w-5xl flex flex-col mx-auto">
-	<Navbar user={data.user} />
+	<div class="sticky top-0">
+		<Navbar user={data.user} />
+	</div>
 	<slot />
 </div>
