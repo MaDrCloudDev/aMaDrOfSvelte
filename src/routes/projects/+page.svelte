@@ -1,5 +1,9 @@
 <script>
 	import Card from '$lib/Card.svelte';
+	export let data;
+	console.log(data);
+
+	let { products } = data;
 </script>
 
 <container class="grid sm:grid-cols-2 md:grid-cols-3 gap-2 p-4">
@@ -8,10 +12,7 @@
 			This page is protected and can only be accessed by authenticated users.
 		</p>
 	</div>
-	<Card />
-	<Card />
-	<Card />
-	<Card />
-	<Card />
-	<Card />
+	<!-- {#each $products as product}
+		<Card />
+	{/each} -->
 </container>
