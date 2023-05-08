@@ -10,7 +10,7 @@
 
 <div class="grid grid-cols-12 place-items-center">
 	<div class="col-span-12">
-		<p class="font-bold text-lg italic text-red-600">
+		<p class="font-bold text-lg italic text-red-600 text-center">
 			This page is protected and can only be accessed by authenticated users.
 		</p>
 		<div class="flex justify-center mt-4">
@@ -18,7 +18,7 @@
 		</div>
 	</div>
 	<div class="col-span-12">
-		<pre class="code">
+		<pre class="code flex">
 			{JSON.stringify(data.user, null, 2)}
 		</pre>
 		<form use:enhance method="post">

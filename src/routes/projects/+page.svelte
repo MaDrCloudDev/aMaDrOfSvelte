@@ -7,9 +7,9 @@
 	console.log(users);
 </script>
 
-<container class="grid sm:grid-cols-2 md:grid-cols-3 gap-2 p-4">
-	<div class="text-center col-span-3">
-		<p class="font-bold text-md sm:text-2xl mb-2">
+<container class="grid gap-2 p-4 place-items-center">
+	<div class="text-center col-span-1 sm:col-span-3">
+		<p class="font-bold text-lg italic text-red-600">
 			This page is protected and can only be accessed by authenticated users.
 		</p>
 	</div>
