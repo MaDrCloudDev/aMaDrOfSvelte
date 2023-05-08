@@ -10,9 +10,7 @@
 	<title>svelteKitMaDrs | MaDr</title>
 </svelte:head>
 
-<div class="sticky top-0">
+<div class=" max-w-5xl mx-auto px-2">
 	<Navbar user={data.user} />
-</div>
-<div class="max-w-5xl mx-auto">
 	<slot />
 </div>

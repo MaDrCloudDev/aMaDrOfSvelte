@@ -15,11 +15,13 @@
 	export let user;
 
 	function closeMenu() {
-		document.getElementById('nav-hamburger').click();
+		if (window.innerWidth < 768) {
+			document.getElementById('nav-hamburger').click();
+		}
 	}
 </script>
 
-<Navbar let:hidden let:toggle>
+<Navbar let:hidden let:toggle navClass="sticky top-0">
 	<NavBrand href="/">
 		<img
 			src="https://raw.githubusercontent.com/MaDrCloudDev/projectsImages/87a496345380971e12ea45b8e24bd23ae64aa25e/MaDrLogo.svg"
