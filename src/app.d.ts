@@ -11,4 +11,7 @@ declare namespace App {
 	interface Locals {
 		auth: import('lucia-auth').AuthRequest;
 	}
+	interface PageData {
+		flash?: { type: 'success' | 'error'; message: string };
+	}
 }

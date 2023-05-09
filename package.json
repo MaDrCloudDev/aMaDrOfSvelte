@@ -37,6 +37,7 @@
 		"classnames": "^2.3.2",
 		"flowbite": "^1.6.5",
 		"flowbite-svelte": "^0.34.12",
-		"lucia-auth": "^1.5.0"
+		"lucia-auth": "^1.5.0",
+		"sveltekit-flash-message": "^0.11.3"
 	}
 }
