@@ -44,3 +44,10 @@ model AuthKey {
   @@index([user_id])
   @@map("auth_key")
 }
+
+model Project {
+  id            Int       @id @default(autoincrement())
+  name        String
+  description String?
+  img         String?
+}

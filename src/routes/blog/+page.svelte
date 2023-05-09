@@ -3,7 +3,6 @@
 	export let data;
 
 	let { posts } = data.posts;
-	console.log(posts);
 </script>
 
 <container class="grid md:grid-cols-2 sm:p-4 gap-4 mx-auto place-items-center">

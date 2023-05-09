@@ -1,8 +1,9 @@
 <script>
 	import Card from '$lib/Card.svelte';
 	export let data;
+	console.log(data);
 
-	let { users } = data.users;
+	const projects = data.projects;
 </script>
 
 <container class="grid gap-2 p-4 place-items-center">
@@ -11,7 +12,7 @@
 			This page is protected and can only be accessed by authenticated users.
 		</p>
 	</div>
-	{#each users as user}
-		<Card imageUrl={user.image} title={user.username} description={user.address.address} />
+	{#each projects as project}
+		<Card imageUrl={project.img} title={project.name} description={project.description} />
 	{/each}
 </container>
