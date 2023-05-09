@@ -2,11 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer base {
-  body {
-    @apply bg-black text-white;
-  }
-  input {
-    @apply bg-gray-200 text-black;
-  }
-} */
+@layer base {
+	body {
+		@apply text-lg;
+	}
+}
