@@ -19,11 +19,17 @@
 		<Label for="password">password</Label>
 		<Input type="password" id="password" name="password" />
 		<Input type="submit" value="Continue" class="cursor-pointer hover:bg-gray-100" />
+		<span class="text-center">New?</span>
 	</form>
+
 	<div class="col-span-12 mt-2">
 		{#if form?.message}
 			<p class="error">{form.message || ''}</p>
 		{/if}
-		<a href="/signup"><Button color="dark">Create a new account</Button></a>
+		<a href="/signup"
+			><button color="dark" class="border border-black px-2 py-1 rounded-lg"
+				>Create an account</button
+			></a
+		>
 	</div>
 </div>

@@ -3,10 +3,32 @@
 	import { Label, Input } from 'flowbite-svelte';
 	import Logo from '$lib/Logo.svelte';
 	// import type { PageData } from './$types';
+	import Toasts from '$lib/toasts/Toasts.svelte';
+	import { addToast } from '$lib/toasts/store';
+	import { onMount } from 'svelte';
+
+	let message = 'Hello, World!';
+	let types = ['success', 'error', 'info'];
+	let type = 'success';
+	let dismissible = true;
+	let timeout = 0;
 
 	// export let data: PageData;
 	export let data;
+
+	onMount(() => {
+		if (data.user) {
+			addToast({
+				message: 'Logged in',
+				type: 'success',
+				dismissible: true,
+				timeout: 2000
+			});
+		}
+	});
 </script>
+
+<Toasts />
 
 <div class="grid grid-cols-12 place-items-center">
 	<div class="col-span-12">

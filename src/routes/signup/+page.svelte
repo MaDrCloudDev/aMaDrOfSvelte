@@ -18,11 +18,14 @@
 		<Label for="password">password</Label>
 		<Input type="password" id="password" name="password" />
 		<Input type="submit" value="Continue" class="cursor-pointer hover:bg-gray-100" />
+		<span class="text-center">Already signed up?</span>
 	</form>
 	<div class="col-span-12 mt-2">
 		{#if form?.message}
 			<p class="error">{form.message || ''}</p>
 		{/if}
-		<a href="/login"><Button color="dark">Sign in</Button></a>
+		<a href="/login"
+			><button color="dark" class="border border-black px-2 py-1 rounded-lg">Sign in</button></a
+		>
 	</div>
 </div>
