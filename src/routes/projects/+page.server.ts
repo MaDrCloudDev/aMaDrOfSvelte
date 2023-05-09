@@ -1,5 +1,7 @@
 import { redirect, type Actions, fail } from '@sveltejs/kit';
 import { auth } from '$lib/server/lucia';
+import { prisma } from '$lib/server/prisma';
+import type { PageServerLoad } from './$types';
 
 /** @type {import('./$types').PageServerLoad} */
 export const load = async ({ locals }) => {
@@ -7,13 +9,8 @@ export const load = async ({ locals }) => {
 	if (!user) {
 		throw redirect(302, '/login');
 	} else {
-		const fetchUsers = async () => {
-			const res = await fetch(`https://dummyjson.com/users`);
-			const users = await res.json();
-			return users;
-		};
 		return {
-			users: await fetchUsers()
+			projects: await prisma.project.findMany()
 		};
 	}
 };

@@ -2,7 +2,8 @@
 	import Post from '$lib/Post.svelte';
 	export let data;
 
-	let { posts } = data.posts;
+	const posts = data.blogposts;
+	console.log(posts);
 </script>
 
 <container class="grid md:grid-cols-2 sm:p-4 gap-4 mx-auto place-items-center">
@@ -12,10 +13,6 @@
 		</p>
 	</div>
 	{#each posts as post}
-		<Post
-			title={post.title}
-			description={post.body}
-			imageUrl="https://flowbite-svelte.com/images/image-1.webp"
-		/>
+		<Post title={post.title} description={post.description} imageUrl={post.img} />
 	{/each}
 </container>
