@@ -24,7 +24,7 @@
 <Navbar
 	let:hidden
 	let:toggle
-	navClass="sticky top-2 rounded-lg py-2 border px-4 mt-2 mb-2 shadow-xl"
+	navClass="sticky top-2 rounded-lg py-2 border px-4 mt-2 mb-2 shadow-xl z-50"
 >
 	<NavBrand href="/">
 		<img
