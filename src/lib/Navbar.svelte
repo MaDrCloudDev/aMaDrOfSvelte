@@ -43,6 +43,7 @@
 		<NavLi id="nav-menu1" class="cursor-pointer"><Chevron aligned>Dropdown</Chevron></NavLi>
 		<NavLi href="/projects" on:click={closeMenu}>Projects</NavLi>
 		<NavLi href="/blog" on:click={closeMenu}>Blog</NavLi>
+		<NavLi href="/components" on:click={closeMenu}>Components?</NavLi>
 		<NavLi href="/contact" on:click={closeMenu}>Contact</NavLi>
 		{#if user}
 			<li class="py-2 px-3 md:py-0 md:px-0">
@@ -64,6 +65,7 @@
 			<DropdownItem href="/projects" on:click={closeMenu}>Projects</DropdownItem>
 			<DropdownItem href="/blog" on:click={closeMenu}>Blog</DropdownItem>
 			<DropdownItem href="/contact" on:click={closeMenu}>Contact</DropdownItem>
+			<DropdownItem href="/components" on:click={closeMenu}>Components?</DropdownItem>
 		</Dropdown>
 	</NavUl>
 </Navbar>
