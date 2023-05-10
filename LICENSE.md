@@ -1,6 +1,6 @@
 MIT License
 
-Copyright © 2022 [Matthew Drish](https://MatthewDrish.com), [MaDr](https://MaDr.io), [MaDrCloudDev](https://github.com/MaDrCloudDev)
+Copyright © 2023 [Matthew Drish](https://MatthewDrish.com), [MaDr](https://MaDr.io), [MaDrCloudDev](https://github.com/MaDrCloudDev)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
