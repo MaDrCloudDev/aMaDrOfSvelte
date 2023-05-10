@@ -35,7 +35,7 @@
 		<span
 			class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white hover:text-[#328eef]"
 		>
-			svelteKitMaDrS
+			aMaDrOfSvelte
 		</span>
 	</NavBrand>
 	<NavHamburger id="nav-hamburger" on:click={toggle} />

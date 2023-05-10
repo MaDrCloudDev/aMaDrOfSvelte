@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-	<title>svelteKitMaDrs | MaDr</title>
+	<title>aMaDrOfSvelte | MaDr</title>
 </svelte:head>
 
 <div class=" max-w-5xl mx-auto px-2">
