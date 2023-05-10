@@ -19,7 +19,7 @@
 		<Label for="password">password</Label>
 		<Input type="password" id="password" name="password" />
 		<Input type="submit" value="Continue" class="cursor-pointer hover:bg-gray-100" />
-		<span class="text-center">New?</span>
+		<span class="text-center">Need an account?</span>
 	</form>
 
 	<div class="col-span-12 mt-2">

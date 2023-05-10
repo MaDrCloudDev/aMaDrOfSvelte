@@ -6,7 +6,7 @@
 	console.log(posts);
 </script>
 
-<container class="grid md:grid-cols-2 sm:p-4 gap-4 mx-auto place-items-center">
+<container class="grid md:grid-cols-2 md:p-4 gap-4 lg:gap-20 mx-auto place-items-center">
 	<div class="text-center col-span-1 md:col-span-2">
 		<p class="font-bold text-lg italic text-red-600">
 			This page is protected and can only be accessed by authenticated users.

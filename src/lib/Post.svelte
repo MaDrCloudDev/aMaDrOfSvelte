@@ -8,7 +8,7 @@
 </script>
 
 <div>
-	<Card img={imageUrl} href="/" reverse={hCard}>
+	<Card img={imageUrl} reverse={hCard}>
 		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
 			{title}
 		</h5>
