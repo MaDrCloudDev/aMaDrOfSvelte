@@ -1,6 +1,7 @@
 {
-	"name": "sveltekitmadrs",
-	"version": "0.0.1",
+	"name": "amadrofsvelte",
+	"version": "0.9.9",
+	"author": "MaDrCloudDev",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
