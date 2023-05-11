@@ -6,26 +6,30 @@
 	export let form;
 </script>
 
-<div class="grid grid-cols-12 place-items-center">
-	<div class="col-span-12 text-center">
+<container class="flex flex-col max-w-xs mx-auto gap-4 mt-10">
+	<div class="text-center flex flex-col gap-4 text-[1.2rem]">
 		<h2>Create an account</h2>
 		<a href="/api/oauth?provider=github"><Button color="dark">Continue with Github</Button></a>
-		<p class="">or</p>
+		<p>or</p>
 	</div>
-	<form method="post" use:enhance class="grid col-span-12 gap-2">
-		<Label for="username">username</Label>
-		<Input id="username" name="username" />
-		<Label for="password">password</Label>
-		<Input type="password" id="password" name="password" />
-		<Input type="submit" value="Continue" class="cursor-pointer hover:bg-gray-100" />
-		<span class="text-center">Already signed up?</span>
+	<form method="post" use:enhance class="flex flex-col gap-4">
+		<Label for="username" class="text-[1.2rem]">username</Label>
+		<Input id="username" size="lg" name="username" />
+		<Label for="password" class="text-[1.2rem]">password</Label>
+		<Input type="password" size="lg" id="password" name="password" />
+		<Input type="submit" size="lg" class="cursor-pointer hover:bg-gray-100" value="Continue" />
 	</form>
-	<div class="col-span-12 mt-2">
+	<div class="flex flex-col text-center gap-4">
+		<span class="text-[1.2rem]">Already signed up?</span>
 		{#if form?.message}
 			<p class="error">{form.message || ''}</p>
 		{/if}
 		<a href="/login"
-			><button color="dark" class="border border-black px-2 py-1 rounded-lg">Sign in</button></a
+			><button
+				color="dark"
+				class="border border-black px-2 py-1 rounded-lg text-[1rem] hover:bg-gray-50"
+				>Sign in</button
+			></a
 		>
 	</div>
-</div>
+</container>

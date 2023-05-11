@@ -46,9 +46,18 @@
 		<form use:enhance method="post">
 			<Input type="submit" value="Sign out" class="cursor-pointer hover:bg-gray-100" />
 		</form>
-		<div class="text-center">
-			<a href="https://github.com/madrclouddev" class="text-sm text-blue-700 hover:underline"
-				>Check out my GitHub!</a
+		<div class="text-center mt-4">
+			<span
+				>Made by <a
+					href="https://madr.io/"
+					target="_blank"
+					class="text-[#328eef] font-bold hover:underline">MaDr</a
+				>. Check out my
+				<a
+					href="https://github.com/madrclouddev/"
+					target="_blank"
+					class="text-[#328eef] font-bold hover:underline">GitHub</a
+				>!</span
 			>
 		</div>
 	</div>
