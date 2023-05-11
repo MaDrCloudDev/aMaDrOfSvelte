@@ -40,7 +40,7 @@
 			</li>
 			<li>
 				<a
-					href="https://tailwindui.com/"
+					href="/"
 					rel="noreferrer"
 					target="_blank"
 					class="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a
