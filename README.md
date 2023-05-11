@@ -19,5 +19,8 @@ I added a service-worker and web-manfiest, meaning the app is also a Progressive
 ```
 nvm i 20
 npm i
+npx prisma generate
+npx prisma db push
+npx prisma studio
 npm run dev
 ```
