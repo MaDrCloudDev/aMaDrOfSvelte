@@ -17,10 +17,24 @@ Both the "Projects" route and "Blog" route are querying PlanetScale for data, re
 I added a service-worker and web-manfiest, meaning the app is also a Progressive Web App, and users in most Chromium browers will be prompted to install the site as a PWA.
 
 ```
+// First get your PlansetScale Prisma connection url from PlanetScale 
+and input it into your .env file
+
+// Then set up oAuth for your app on GitHub and input the environment 
+variables into your .env file
+
 nvm i 20
 npm i
+
+// App wont work witout generating your prisma client and pushing it 
+to your DB
+
 npx prisma generate
 npx prisma db push
+
+// App still wont work, because Projects and Blog routes are looping over
+empty tables. Add some data to their tables using Prisma studio
+
 npx prisma studio
 npm run dev
 ```
