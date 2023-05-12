@@ -33,7 +33,7 @@
 			alt="Flowbite Logo"
 		/>
 		<span
-			class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white hover:text-[#328eef]"
+			class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white hover:text-blue-700"
 		>
 			aMaDrOfSvelte
 		</span>

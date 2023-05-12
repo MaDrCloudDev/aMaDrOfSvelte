@@ -7,7 +7,20 @@
 	export let form;
 </script>
 
-<container class="flex flex-col max-w-xs mx-auto gap-4 mt-10">
+<div class="flex flex-col text-center mb-[-20px]">
+	<span class="italic text-xl font-bold text-blue-700"
+		>A modern, contained full-stack template manageable by solo developers; but usable by large
+		teams</span
+	>
+	<span
+		>Made by <a
+			href="https://madr.io"
+			target="_blank"
+			class="font-bold text-blue-700 hover:underline hover:cursor-pointer">MaDr</a
+		></span
+	>
+</div>
+<container class="flex flex-col max-w-xs mx-auto gap-4 mt-10 h-[32rem]">
 	<div class="text-center flex flex-col gap-4 text-[1.2rem]">
 		<h2>Sign in</h2>
 		<a href="/api/oauth?provider=github"><Button color="dark">Continue with Github</Button></a>
