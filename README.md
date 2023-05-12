@@ -69,5 +69,5 @@ serverless functions.
 
 You likely need to override your host's build step; changing 
 it to "npm install && npx prisma generate" rather than simply
-"npm insstall".
+"npm install".
 
