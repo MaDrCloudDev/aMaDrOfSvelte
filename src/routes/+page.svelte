@@ -51,12 +51,12 @@
 				>Made by <a
 					href="https://madr.io/"
 					target="_blank"
-					class="text-[#328eef] font-bold hover:underline">MaDr</a
+					class="text-blue-700 font-bold hover:underline">MaDr</a
 				>. Check out my
 				<a
 					href="https://github.com/madrclouddev/"
 					target="_blank"
-					class="text-[#328eef] font-bold hover:underline">GitHub</a
+					class="text-blue-700 font-bold hover:underline">GitHub</a
 				>!</span
 			>
 		</div>
