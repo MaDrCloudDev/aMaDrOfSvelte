@@ -1,18 +1,19 @@
 # [aMaDrOfSvelte](https://amadrofsvelte.madr.io)
 
-## Your definitive Prisma, Planetscale (MySQL), Lucia auth/oAuth, SvelteKit, PWA, Tailwind; Flowbite template.
+## Your definitive Prisma, Planetscale (MySQL), Lucia auth/oAuth, SvelteKit, PWA, Tailwind-Flowbite, full-stack template. Similar to T3 Stack, without tRPC (because we don't need it), nor the needless complexities of Next and React
+
+### aMaDrOfSvelte lets you manage your database, your "server", your APIs, and and your front-end all from the same the codebase; using the same languages, by merely typing a few commands into your terminal
 
 ## Features
 
-- PlanetScale (MySQL) Database
-- Prisma for ORM and query building
-- Lucia auth with oAuth for easy user authentication
-- SvelteKit for the best frontend developer experience
-- Pre-configured with Tailwind and Flowbite for easy-to-use components
-- Service-worker and web-manfiest for full PWA compadibility
+- PlanetScale (MySQL) Database. More flexible than NoSQL, but just as easy to use thanks to Prisma
+- Prisma for ORM, query building, and dead-simple data manipulation. Just type "npx prisma studio"
+- Lucia auth with oAuth for easy user authentication. GitHub oAuth pre-configued; remove it if you want simple sign-in
+- SvelteKit for the best frontend developer experience. It just works, and I end up typing half as much code as React
+- Pre-configured with Tailwind and Flowbite for easy-to-use components. Try the Flowbite components, or remove it and use regular Tailwind
+- Service-worker and web-manfiest for full PWA compadibility. Edit them to fit your sites constraints
 - The full-stack template a single developer can manage; all from their front-end
-- Hosted on Vercel with serverless functions
-
+- Hosted on Vercel using autodetected serverless functions
 ---
 
 ## Requirements
