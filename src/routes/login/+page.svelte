@@ -45,7 +45,8 @@
 			<p class="error">{form.message || ''}</p>
 		{/if}
 		<a href="/signup"
-			><button class="border border-black px-2 py-1 rounded-lg text-[1rem] hover:bg-gray-50"
+			><button
+				class="border border-black px-2 py-1 rounded-lg text-[1rem] hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-white"
 				>Create an account</button
 			></a
 		>
