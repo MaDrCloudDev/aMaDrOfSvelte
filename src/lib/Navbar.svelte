@@ -11,6 +11,7 @@
 		Chevron,
 		DropdownDivider
 	} from 'flowbite-svelte';
+	import { DarkMode } from 'flowbite-svelte';
 
 	export let user;
 
@@ -26,7 +27,7 @@
 	let:toggle
 	navClass="sticky top-2 rounded-lg py-2 border px-4 mt-2 mb-2 shadow-xl z-50"
 >
-	<NavBrand href="/">
+	<NavBrand href="/" class="flex">
 		<img
 			src="https://raw.githubusercontent.com/MaDrCloudDev/projectsImages/87a496345380971e12ea45b8e24bd23ae64aa25e/MaDrLogo.svg"
 			class="mr-3 h-6 sm:h-9"
@@ -39,7 +40,7 @@
 		</span>
 	</NavBrand>
 	<NavHamburger id="nav-hamburger" on:click={toggle} />
-	<NavUl {hidden} ulClass="text-lg md:flex w-full gap-4">
+	<NavUl {hidden} ulClass="text-lg md:flex w-full gap-4 items-center">
 		<NavLi id="nav-menu1" class="cursor-pointer"><Chevron aligned>Dropdown</Chevron></NavLi>
 		<NavLi href="/projects" on:click={closeMenu}>Projects</NavLi>
 		<NavLi href="/blog" on:click={closeMenu}>Blog</NavLi>
@@ -67,5 +68,6 @@
 			<DropdownItem href="/contact" on:click={closeMenu}>Contact</DropdownItem>
 			<DropdownItem href="/components" on:click={closeMenu}>Components?</DropdownItem>
 		</Dropdown>
+		<NavLi class=""><DarkMode /></NavLi>
 	</NavUl>
 </Navbar>

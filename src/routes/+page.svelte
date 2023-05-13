@@ -32,7 +32,7 @@
 
 <div class="grid grid-cols-12 place-items-center">
 	<div class="col-span-12">
-		<p class="font-bold text-lg italic text-red-600 text-center">
+		<p class="font-bold text-lg italic text-red-600 dark:text-red-400 text-center">
 			This page is protected and can only be accessed by authenticated users.
 		</p>
 		<div class="flex justify-center mt-4">
@@ -51,12 +51,12 @@
 				>Made by <a
 					href="https://madr.io/"
 					target="_blank"
-					class="text-blue-700 font-bold hover:underline">MaDr</a
+					class="text-blue-700 dark:text-yellow-400 font-bold hover:underline">MaDr</a
 				>. Check out my
 				<a
 					href="https://github.com/madrclouddev/"
 					target="_blank"
-					class="text-blue-700 font-bold hover:underline">GitHub</a
+					class="text-blue-700 dark:text-yellow-400 font-bold hover:underline">GitHub</a
 				>!</span
 			>
 		</div>
