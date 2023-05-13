@@ -44,7 +44,11 @@
 			{JSON.stringify(data.user, null, 2)}
 		</pre>
 		<form use:enhance method="post">
-			<Input type="submit" value="Sign out" class="cursor-pointer hover:bg-gray-100" />
+			<Input
+				type="submit"
+				value="Sign out"
+				class="text-center font-medium focus:ring-4 focus:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-purple-700 hover:bg-purple-800 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 rounded-lg hover:cursor-pointer"
+			/>
 		</form>
 		<div class="text-center mt-4">
 			<span
