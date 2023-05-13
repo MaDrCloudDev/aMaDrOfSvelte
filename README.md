@@ -1,8 +1,10 @@
 # [aMaDrOfSvelte](https://amadrofsvelte.madr.io)
 
-## A decisive full-stack SvelteKit template featuring: Prisma, Planetscale (MySQL), Lucia auth & GitHub oAuth, & Tailwind w/ Flowbite components
+## A decisive full-stack SvelteKit template featuring: Prisma, Planetscale (MySQL), Lucia auth w/ GitHub oAuth, & Tailwind w/ Flowbite components
 
-### aMaDrOfSvelte lets you manage your database, your "server", your APIs, and and your front-end all from the same the codebase; using the same language, by merely typing a few commands into your terminal
+### aMaDrOfSvelte lets you manage your database, your "server" (serverless functions), your APIs, and and your front-end all from the same the codebase - using the same language - by merely typing a few commands into your terminal
+
+#### A modern, contained full-stack template manageable by solo developers; but usable by large teams
 
 ## Features
 
@@ -21,6 +23,7 @@
 
 - [PlanetScale](https://planetscale.com/)
 - [Prisma](https://www.prisma.io/)
+- [Lucia Auth](https://lucia-auth.com/)
 - [Vercel](https://vercel.com/)
 - [Flowbite](https://flowbite-svelte.com/)
 
