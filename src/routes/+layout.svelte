@@ -10,7 +10,7 @@
 	<title>aMaDrOfSvelte | MaDr</title>
 </svelte:head>
 
-<div class=" max-w-5xl mx-auto px-2">
+<div class="max-w-5xl mx-auto px-2">
 	<Navbar user={data.user} />
 	<slot />
 	<Footer />
