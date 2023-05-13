@@ -2,7 +2,7 @@
 
 ## Your definitive Prisma, Planetscale (MySQL), Lucia auth/oAuth, SvelteKit, PWA, Tailwind-Flowbite, full-stack template. Similar to T3 Stack, without tRPC (because we don't need it), nor the needless complexities of Next and React
 
-### aMaDrOfSvelte lets you manage your database, your "server", your APIs, and and your front-end all from the same the codebase; using the same languages, by merely typing a few commands into your terminal
+### aMaDrOfSvelte lets you manage your database, your "server", your APIs, and and your front-end all from the same the codebase; using the same language, by merely typing a few commands into your terminal
 
 ## Features
 
