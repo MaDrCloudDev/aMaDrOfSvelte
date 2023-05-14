@@ -43,7 +43,7 @@
 		<NavLi href="/components" on:click={closeMenu}>Components?</NavLi>
 		<NavLi href="/contact" on:click={closeMenu}>Contact</NavLi>
 		{#if user}
-			<li class="py-2 px-3 md:py-0 md:px-0">
+			<li class="">
 				<form use:enhance method="post">
 					<input
 						type="submit"
