@@ -6,6 +6,7 @@
 
 #### A modern, contained full-stack template manageable by solo developers; but usable by large teams
 
+---
 ## Features
 
 - PlanetScale (MySQL) Database. More flexible than NoSQL, but just as easy to use thanks to Prisma
@@ -18,7 +19,11 @@
 - Hosted on Vercel using autodetected serverless functions
 
 ---
+## Learn SvelteKit!
 
+I've added [slug]-based routing to the Blog and Projects route. Now, when you click respective blog and project links, you're taken to a dynamic route based on their ID, which then uses that ID parameter to load in the appropriate data from the database.
+
+---
 ## Requirements
 
 - [PlanetScale](https://planetscale.com/)
@@ -27,6 +32,7 @@
 - [Vercel](https://vercel.com/)
 - [Flowbite](https://flowbite-svelte.com/)
 
+---
 ## Getting Started
 
 [Generate](https://github.com/madrclouddev/amadrofsvelte/generate) a new project
@@ -63,6 +69,7 @@ npm run dev
 npm run build
 ```
 
+---
 ## How to Deploy
 
 Ensure that all the environment variables are correct.
