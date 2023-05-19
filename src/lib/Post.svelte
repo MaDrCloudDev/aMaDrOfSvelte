@@ -5,6 +5,7 @@
 	export let title;
 	export let imageUrl;
 	export let description;
+	export let slug;
 </script>
 
 <div>
@@ -15,7 +16,7 @@
 		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
 			{description.substring(0, 100)}...
 		</p>
-		<Button>
+		<Button href={slug}>
 			Read more <svg
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
