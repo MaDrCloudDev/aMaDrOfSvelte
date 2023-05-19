@@ -1,9 +1,10 @@
 <script>
 	import Card from '$lib/Card.svelte';
+
 	export let data;
-	console.log(data);
 
 	const projects = data.projects;
+	console.log(projects);
 </script>
 
 <container class="grid gap-2 p-4 place-items-center">
@@ -13,6 +14,11 @@
 		</p>
 	</div>
 	{#each projects as project}
-		<Card imageUrl={project.img} title={project.name} description={project.description} />
+		<Card
+			imageUrl={project.img}
+			title={project.name}
+			description={project.description}
+			slug={`/projects/${project.id}/`}
+		/>
 	{/each}
 </container>

@@ -4,6 +4,7 @@
 	export let imageUrl;
 	export let description;
 	export let title;
+	export let slug;
 </script>
 
 <Card img={imageUrl} reverse={vCard}>
@@ -14,7 +15,7 @@
 		<p class="mb-3 font-normal text-gray-700 dark:text-gray-400 leading-tight">
 			{description}
 		</p>
-		<Button>
+		<Button href={slug}>
 			Read more <svg
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
