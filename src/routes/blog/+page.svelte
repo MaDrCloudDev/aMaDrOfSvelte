@@ -3,7 +3,6 @@
 	export let data;
 
 	const posts = data.blogposts;
-	console.log(posts);
 </script>
 
 <container class="grid md:grid-cols-2 md:p-4 mx-auto place-items-center">
@@ -14,7 +13,12 @@
 	</div>
 	{#each posts as post}
 		<div class="mb-10">
-			<Post title={post.title} description={post.description} imageUrl={post.img} />
+			<Post
+				title={post.title}
+				description={post.description}
+				imageUrl={post.img}
+				slug={`/blog/${post.id}/`}
+			/>
 		</div>
 	{/each}
 </container>
