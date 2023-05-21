@@ -1,14 +1,14 @@
 <script>
-	import Accordion from '$lib/Accordion.svelte';
-	import Buttons from '$lib/Buttons.svelte';
-	import Tooltip from '$lib/Tooltip.svelte';
-	import Timeline from '$lib/Timeline.svelte';
-	import Table from '$lib/Table.svelte';
-	import Tabs from '$lib/Tabs.svelte';
-	import Spinner from '$lib/Spinner.svelte';
-	import SpeedDial from '$lib/SpeedDial.svelte';
-	import Popover from '$lib/Popover.svelte';
-	import Modal from '$lib/Modal.svelte';
+	import Accordion from '$lib/flowbite/Accordion.svelte';
+	import Buttons from '$lib/flowbite/Buttons.svelte';
+	import Tooltip from '$lib/flowbite/Tooltip.svelte';
+	import Timeline from '$lib/flowbite/Timeline.svelte';
+	import Table from '$lib/flowbite/Table.svelte';
+	import Tabs from '$lib/flowbite/Tabs.svelte';
+	import Spinner from '$lib/flowbite/Spinner.svelte';
+	import SpeedDial from '$lib/flowbite/SpeedDial.svelte';
+	import Popover from '$lib/flowbite/Popover.svelte';
+	import Modal from '$lib/flowbite/Modal.svelte';
 
 	let style = 'dark';
 </script>
@@ -29,7 +29,7 @@
 	<div>
 		<Accordion />
 	</div>
-	<div>
+	<div class="">
 		<Tooltip />
 	</div>
 	<div>
