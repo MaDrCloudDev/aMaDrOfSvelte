@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../app.css';
-	import Navbar from '$lib/Navbar.svelte';
+	import Navbar from '$lib/flowbite/Navbar.svelte';
 	import Footer from '$lib/Footer.svelte';
 
 	export let data;

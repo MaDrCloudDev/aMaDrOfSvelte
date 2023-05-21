@@ -1,5 +1,5 @@
 <script>
-	import Card from '$lib/Card.svelte';
+	import Card from '$lib/flowbite/Card.svelte';
 
 	export let data;
 
