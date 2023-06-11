@@ -8,7 +8,7 @@
 
 <container class="flex h-screen">
 	<div
-		class="flex flex-col text-center h-fit mx-auto w-fit rounded-lg"
+		class="flex flex-col text-center h-fit mx-auto w-fit rounded-lg text-white"
 		style="background-color: hsla(0, 0%, 0%, 0.5)"
 	>
 		<h1 class="text-xl font-bold underline p-4">{project.name}</h1>
