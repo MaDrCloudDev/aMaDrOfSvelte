@@ -4,7 +4,7 @@
 
 ### aMaDrOfSvelte lets you manage your database, your "server" (serverless functions), your APIs, and and your front-end all from the same the codebase - using the same language - by merely typing a few commands into your terminal
 
-#### A modern, contained full-stack template manageable by solo developers; but usable by large teams
+#### A modern, contained full-stack template manageable by solo developers; usable by large teams
 
 ---
 ## Features
