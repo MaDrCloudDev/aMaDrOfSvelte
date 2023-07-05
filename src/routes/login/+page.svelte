@@ -9,7 +9,7 @@
 
 <div class="flex flex-col text-center mb-[-20px]">
 	<span class="italic text-xl font-bold text-blue-700 dark:text-yellow-400"
-		>A modern, contained full-stack template manageable by solo developers; but usable by large
+		>A modern, contained full-stack template manageable by solo developers; usable by large
 		teams</span
 	>
 	<span
