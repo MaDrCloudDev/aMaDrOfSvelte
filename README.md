@@ -82,3 +82,12 @@ serverless functions.
 You likely need to override your host's build step; changing
 it to "npm install && npx prisma generate" rather than simply
 "npm install".
+
+---
+
+### Notes
+
+The "logged in" toast is just something i cobbled together, and will always refire when you visit the homepage. I'm still looking for a good solution for toasts that work with forms and occur after the redirect - without having to use local store.
+
+Work in progress...
+
