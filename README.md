@@ -89,7 +89,6 @@ it to "npm install && npx prisma generate" rather than simply
 
 ### Notes
 
-The "logged in" toast is just something I cobbled together. It will always refire when you visit the homepage (which is a protected route). I'm not returning any feedback or error for unlogged-in users visistng protected routes (the app simply won't work if you aren't logged in, except for the compoenents route, which is unprotected. I'm looking for a flash notifcation that works with forms and serverless functions. I'll update when I find a suitable solution.
+The "logged in" toast is just something I cobbled together. It will always refire when you visit the homepage (a protected route). I'm not returning any feedback/error for unlogged-in users visistng protected routes (the app simply won't work if you aren't logged in - except for the compoenents route - which is unprotected). I'm looking for a flash notifcation that works with forms and serverless functions. I'll update when I find a suitable solution.
 
 It's a work in progress... will add some form of CRUD when I get a chance, probably a guestbook.
-
