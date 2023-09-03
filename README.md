@@ -38,6 +38,8 @@ I've added [slug]-based routing to the Blog and Projects route. Now, when you cl
 [Generate](https://github.com/madrclouddev/amadrofsvelte/generate) a new project
 from this template, update
 environment variables in your .env:
+don't have a .env in your root folder?
+create one!
 
 ```
 git clone https://github.com/madrclouddev/amadrofsvelte.git amadrofsvelte
@@ -72,11 +74,11 @@ npm run build
 ---
 ## How to Deploy
 
-Ensure that all the environment variables are correct.
+Ensure that all the environment variables in your .env are correct.
 
 There's no node-express server here, so you need to
 host somewhere like Vercel or Netlify, which should
-automatically turn Svelte server functions into
+automatically turn the SvelteKit server functions into
 serverless functions.
 
 You likely need to override your host's build step; changing
@@ -87,7 +89,7 @@ it to "npm install && npx prisma generate" rather than simply
 
 ### Notes
 
-The "logged in" toast is just something i cobbled together, and will always refire when you visit the homepage (which is a protected route). I'm looking for a flash notifcation that works with forms and serverless functions, will update when I find a suitable library.
+The "logged in" toast is just something I cobbled together. It will always refire when you visit the homepage (which is a protected route). I'm not returning any feedback or error for unlogged-in users visistng protected routes (the app simply won't work if you aren't logged in, except for the compoenents route, which is unprotected. I'm looking for a flash notifcation that works with forms and serverless functions. I'll update when I find a suitable solution.
 
-It's a work in progress... Will add some form of CRUD for demonsontrative purposses.
+It's a work in progress... will add some form of CRUD when I get a chance, probably a guestbook.
 
