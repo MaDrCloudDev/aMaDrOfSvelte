@@ -45,19 +45,19 @@ model AuthKey {
   @@map("auth_key")
 }
 
-model Project {
-  id          Int       @id @default(autoincrement())
+model AMSProject {
+  id          Int     @id @default(autoincrement())
   name        String
   description String?
   img         String?
 }
 
-model Blogpost {
-  id          Int       @id @default(autoincrement())
+model AMSBlogpost {
+  id          Int      @id @default(autoincrement())
   title       String
-  description String?   @db.VarChar(255)
+  description String?  @db.VarChar(255)
   img         String?
-  published   Boolean   @default(false)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
