@@ -1,6 +1,6 @@
 # [aMaDrOfSvelte](https://amadrofsvelte.madr.io)
 
-### ***UPDATE:*** I'm waiting for Svelte5/SvelteKit2 to update this project.
+### ***UPDATE:*** I'm waiting for SvelteKit2 for the next version of this project. PlanetScale cancelled their free tier, so the live app is no longer functional. Next version will use Drizzle instead of Prisma, and Vercel PostgreSQL instead of PlanetScale.
 
 ## A small, decisive full-stack SvelteKit template stater featuring: Prisma, Planetscale (MySQL), Lucia auth w/ GitHub oAuth, & Tailwind w/ Flowbite components 
 
