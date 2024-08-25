@@ -2,7 +2,7 @@
 
 ### **UPDATE:**
 
-I'm working on the new SvelteKit2, Svelte5, Drizzle, Lucia, Turso version of this app. I'm still not sure if I'm going to make it a new project, version it, or push STRAIGHT TO MAIN in this repo, and replace the old version. PlanetScale got rid of their free-tier, and I've been wanting to use Drizzle over Prisma for awhile now. We'll see.
+PlanetScale got rid of their free-tier, so the demo no longer works, but you can still use this repository as reference for fullstack SvelteKit applications. I've been wanting to use Drizzle over Prisma for awhile now, and I'm working on the new SvelteKit2, Svelte5, Drizzle, Lucia, Turso version of this app. I'm still not sure if I'm going to make it a new project, version it, or push STRAIGHT TO MAIN in this repo, replacing the old version. We'll see.
 
 ---
 
