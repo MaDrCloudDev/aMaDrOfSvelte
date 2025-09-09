@@ -1,54 +1,71 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { Label, Input } from 'flowbite-svelte';
-	import { Button } from 'flowbite-svelte';
+	import type { ActionData } from './$types';
+	import { Button } from '$lib/components/ui/button';
+	import {
+		Card,
+		CardContent,
+		CardDescription,
+		CardHeader,
+		CardTitle
+	} from '$lib/components/ui/card';
+	import { Input } from '$lib/components/ui/input';
+	import { Label } from '$lib/components/ui/label';
+	import { Alert, AlertDescription } from '$lib/components/ui/alert';
+	import { Separator } from '$lib/components/ui/separator';
 
-	// export let form: { message?: string };
-	export let form;
+	let { form }: { form: ActionData } = $props();
 </script>
 
-<div class="flex flex-col text-center mb-[-20px]">
-	<span class="italic text-xl font-bold text-blue-700 dark:text-yellow-400"
-		>A modern, contained full-stack template manageable by solo developers; usable by large
-		teams</span
-	>
-	<span
-		>Made by <a
-			href="https://madr.io"
-			target="_blank"
-			class="font-bold text-blue-700 dark:text-yellow-400 hover:underline hover:cursor-pointer"
-			>MaDr</a
-		></span
-	>
+<div class="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-background p-4">
+	<Card class="w-full max-w-md">
+		<CardHeader class="space-y-1">
+			<CardTitle class="text-center text-2xl font-bold">Already have an account?</CardTitle>
+			<CardDescription class="text-center">Sign in!</CardDescription>
+		</CardHeader>
+		<CardContent>
+			<form class="space-y-4" method="POST" use:enhance>
+				{#if form?.error}
+					<Alert variant="destructive">
+						<AlertDescription>{form.error}</AlertDescription>
+					</Alert>
+				{/if}
+
+				<div class="space-y-2">
+					<Label for="email">Email</Label>
+					<Input
+						id="email"
+						name="email"
+						type="email"
+						placeholder="Enter your email"
+						autocomplete="email"
+						required
+						value={form?.email ?? ''}
+					/>
+				</div>
+
+				<div class="space-y-2">
+					<Label for="password">Password</Label>
+					<Input
+						id="password"
+						name="password"
+						type="password"
+						placeholder="Enter your password"
+						autocomplete="current-password"
+						required
+					/>
+				</div>
+
+				<Button type="submit" class="w-full">Sign in</Button>
+			</form>
+
+			<div class="mt-6">
+				<Separator />
+				<p class="mt-4 text-center text-sm text-muted-foreground">
+					Don't have an account?
+					<a href="/register" class="font-medium text-primary hover:underline"> Sign up </a>
+				</p>
+			</div>
+		</CardContent>
+	</Card>
 </div>
-<container class="flex flex-col max-w-xs mx-auto mt-10 h-[32rem]">
-	<div class="text-center flex flex-col text-[1.2rem] gap-2">
-		<h2>Sign in</h2>
-		<a href="/api/oauth?provider=github"><Button color="purple">Continue with Github</Button></a>
-		<p>or</p>
-	</div>
-	<form method="post" use:enhance class="flex flex-col gap-4">
-		<Label for="username" class="text-[1.2rem]">username</Label>
-		<Input id="username" size="lg" name="username" />
-		<Label for="password" class="text-[1.2rem]">password</Label>
-		<Input type="password" size="lg" id="password" name="password" />
-		<Input
-			type="submit"
-			size="md"
-			class="text-center font-medium focus:ring-4 focus:outline-none inline-flex items-center justify-center px-5 py-2.5 text-sm text-white bg-purple-700 hover:bg-purple-800 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 rounded-lg w-[40%] mx-auto hover:cursor-pointer"
-			value="Continue"
-		/>
-	</form>
-	<div class="flex flex-col text-center gap-2 mt-2">
-		<span class="text-[1.2rem]">Need an account?</span>
-		{#if form?.message}
-			<p class="error">{form.message || ''}</p>
-		{/if}
-		<a href="/signup"
-			><button
-				class="border border-black px-2 py-1 rounded-lg text-[1rem] hover:bg-gray-50 dark:hover:bg-gray-700 dark:border-white"
-				>Create an account</button
-			></a
-		>
-	</div>
-</container>
