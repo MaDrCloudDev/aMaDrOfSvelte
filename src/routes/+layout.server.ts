@@ -1,7 +1,7 @@
-export const load = async ({ locals }) => {
-	const { user } = await locals.auth.validateUser();
-	// if (!user) throw redirect(302, '/login');
+import type { LayoutServerLoad } from './$types';
+
+export const load: LayoutServerLoad = async ({ locals }) => {
 	return {
-		user
+		user: locals.user
 	};
 };

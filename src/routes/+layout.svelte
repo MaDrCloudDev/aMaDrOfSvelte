@@ -1,17 +1,11 @@
 <script lang="ts">
 	import '../app.css';
-	import Navbar from '$lib/flowbite/Navbar.svelte';
-	import Footer from '$lib/Footer.svelte';
+	import Navbar from '$lib/components/Navbar.svelte';
+	import type { LayoutData } from './$types';
 
-	export let data;
+	let { children, data }: { children: any; data: LayoutData } = $props();
 </script>
 
-<svelte:head>
-	<title>aMaDrOfSvelte | MaDr</title>
-</svelte:head>
+<Navbar user={data.user} />
 
-<div class="max-w-5xl mx-auto px-2">
-	<Navbar user={data.user} />
-	<slot />
-	<Footer />
-</div>
+{@render children?.()}

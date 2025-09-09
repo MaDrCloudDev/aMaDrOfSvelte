@@ -1,14 +1,22 @@
-/// <reference types="lucia-auth" />
-declare namespace Lucia {
-	type Auth = import('$lib/server/lucia.js').Auth;
-	type UserAttributes = {
-		username: string;
-	};
-}
-
-/// <reference types="@sveltejs/kit" />
-declare namespace App {
-	interface Locals {
-		auth: import('lucia-auth').AuthRequest;
+// See https://svelte.dev/docs/kit/types#app.d.ts
+// for information about these interfaces
+declare global {
+	namespace App {
+		// interface Error {}
+		interface Locals {
+			user: {
+				id: number;
+				email: string;
+			} | null;
+			session: {
+				id: string;
+				expiresAt: Date;
+			} | null;
+		}
+		// interface PageData {}
+		// interface PageState {}
+		// interface Platform {}
 	}
 }
+
+export {};
