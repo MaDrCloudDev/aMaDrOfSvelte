@@ -1,6 +1,5 @@
 # aMaDrOfSvelte
-
-Because I got tired of building the same auth flow over and over again.
+## TODO: I'm probably going to switch over to [Better Auth](https://github.com/better-auth/better-auth) in the near future
 
 ## What you get
 
