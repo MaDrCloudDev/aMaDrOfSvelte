@@ -118,7 +118,7 @@
 						<div class="space-y-2">
 							<h4 class="font-medium">Tech Stack</h4>
 							<ul class="space-y-1 text-sm text-muted-foreground">
-								<li>• SvelteKit 5</li>
+								<li>• SvelteKit</li>
 								<li>• Tailwind CSS 4</li>
 								<li>• shadcn-svelte</li>
 								<li>• Drizzle ORM + Turso</li>
