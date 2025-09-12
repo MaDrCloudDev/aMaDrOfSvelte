@@ -1,12 +1,5 @@
 import { sqliteTable, integer, text } from 'drizzle-orm/sqlite-core';
 
-<<<<<<< Updated upstream
-export const users = sqliteTable('users', {
-	id: integer('id').primaryKey(),
-	email: text('email').notNull().unique(),
-	passwordHash: text('password_hash').notNull(),
-	createdAt: integer('created_at', { mode: 'timestamp' }).notNull()
-=======
 export const user = sqliteTable('user', {
 	id: text('id').primaryKey(),
 	name: text('name'),
@@ -15,18 +8,20 @@ export const user = sqliteTable('user', {
 	image: text('image'),
 	createdAt: integer('createdAt', { mode: 'timestamp' }).notNull(),
 	updatedAt: integer('updatedAt', { mode: 'timestamp' }).notNull()
->>>>>>> Stashed changes
 });
 
-export const sessions = sqliteTable('sessions', {
+export const session = sqliteTable('session', {
 	id: text('id').primaryKey(),
-	userId: integer('user_id')
+	expiresAt: integer('expiresAt', { mode: 'timestamp' }).notNull(),
+	token: text('token').notNull().unique(),
+	createdAt: integer('createdAt', { mode: 'timestamp' }).notNull(),
+	updatedAt: integer('updatedAt', { mode: 'timestamp' }).notNull(),
+	ipAddress: text('ipAddress'),
+	userAgent: text('userAgent'),
+	userId: text('userId')
 		.notNull()
-		.references(() => users.id),
-	expiresAt: integer('expires_at', { mode: 'timestamp' }).notNull()
+		.references(() => user.id)
 });
-<<<<<<< Updated upstream
-=======
 
 export const account = sqliteTable('account', {
 	id: text('id').primaryKey(),
@@ -54,4 +49,3 @@ export const verification = sqliteTable('verification', {
 	createdAt: integer('createdAt', { mode: 'timestamp' }),
 	updatedAt: integer('updatedAt', { mode: 'timestamp' })
 });
->>>>>>> Stashed changes
