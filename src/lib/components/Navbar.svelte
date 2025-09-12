@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { Button } from '$lib/components/ui/button';
-	import { signOut } from '$lib/auth-client';
+	import { signIn, signOut } from '$lib/auth-client';
 	import { Separator } from '$lib/components/ui/separator';
 	import { Menu, X } from '@lucide/svelte';
 
@@ -10,6 +10,7 @@
 	let { user = null }: { user?: User | null } = $props();
 	let mobileMenuOpen = $state(false);
 	let navElement: HTMLElement;
+	let authLoading = $state(false);
 
 	function toggleMobileMenu() {
 		mobileMenuOpen = !mobileMenuOpen;
@@ -21,15 +22,35 @@
 
 	async function handleSignOut() {
 		try {
+			authLoading = true;
 			await signOut({
 				fetchOptions: {
 					onSuccess: () => {
-						window.location.href = '/auth?message=Successfully signed out';
+						window.location.href = '/?message=Signed out';
 					}
 				}
 			});
 		} catch (error) {
 			console.error('Sign out error:', error);
+			authLoading = false;
+		}
+	}
+
+	async function handleGitHubAuth() {
+		if (authLoading) return;
+		authLoading = true;
+		if (user) {
+			await handleSignOut();
+			return;
+		}
+		try {
+			await signIn.social({
+				provider: 'github',
+				callbackURL: '/dashboard'
+			});
+		} catch (error) {
+			console.error('GitHub sign-in error:', error);
+			authLoading = false;
 		}
 	}
 
@@ -125,15 +146,6 @@
 					>
 						About
 					</a>
-					<a
-						href="/auth?mode=signin"
-						class="text-sm font-medium transition-colors hover:text-primary {page.url.pathname ===
-						'/auth'
-							? 'text-primary'
-							: 'text-muted-foreground'}"
-					>
-						Sign In
-					</a>
 				{/if}
 			</div>
 
@@ -159,7 +171,7 @@
 					href="https://github.com/MaDrCloudDev/aMaDrOfSvelte"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="flex h-9 w-9 items-center justify-center rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground"
+					class="flex h-9 items-center justify-center gap-2 rounded-md border border-input bg-background px-2 text-sm hover:bg-accent hover:text-accent-foreground"
 					title="View on GitHub"
 					aria-label="View project on GitHub"
 				>
@@ -173,26 +185,57 @@
 							d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"
 						/>
 					</svg>
+					Repo
 				</a>
 
 				{#if user}
 					<div class="hidden items-center space-x-3 sm:flex">
-						<span class="text-sm text-muted-foreground">
+						<span class="mr-0 text-sm text-muted-foreground">
 							{user.email}
 						</span>
 						<Separator orientation="vertical" class="h-4" />
 					</div>
-					<Button variant="outline" size="sm" onclick={handleSignOut}>Logout</Button>
 				{:else}
-					<div class="flex items-center space-x-2">
-						<a href="/auth?mode=signin">
-							<Button variant="ghost" size="sm">Sign In</Button>
-						</a>
-						<a href="/auth?mode=signup">
-							<Button size="sm">Get Started</Button>
-						</a>
-					</div>
+					<!-- no extra content when logged out -->
 				{/if}
+				<Button
+					variant="outline"
+					size="sm"
+					class="h-9"
+					onclick={handleGitHubAuth}
+					disabled={authLoading}
+				>
+					{#if authLoading}
+						<svg class="h-4 w-4 animate-spin" viewBox="0 0 24 24">
+							<circle
+								class="opacity-25"
+								cx="12"
+								cy="12"
+								r="10"
+								stroke="currentColor"
+								stroke-width="4"
+								fill="none"
+							></circle>
+							<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+							></path>
+						</svg>
+						Processing...
+					{:else}
+						{user ? 'Logout' : 'Sign in with'}
+						{#if !user}
+							<svg
+								class="h-4 w-4"
+								fill="currentColor"
+								viewBox="0 0 24 24"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"
+								/>
+							</svg>
+						{/if}
+					{/if}
+				</Button>
 			</div>
 		</div>
 
@@ -246,12 +289,33 @@
 								variant="outline"
 								size="sm"
 								class="w-full"
+								disabled={authLoading}
 								onclick={() => {
 									closeMobileMenu();
-									handleSignOut();
+									handleGitHubAuth();
 								}}
 							>
-								Logout
+								{#if authLoading}
+									<svg class="mr-2 h-4 w-4 animate-spin" viewBox="0 0 24 24">
+										<circle
+											class="opacity-25"
+											cx="12"
+											cy="12"
+											r="10"
+											stroke="currentColor"
+											stroke-width="4"
+											fill="none"
+										></circle>
+										<path
+											class="opacity-75"
+											fill="currentColor"
+											d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+										></path>
+									</svg>
+									Processing...
+								{:else}
+									Logout
+								{/if}
 							</Button>
 						</div>
 					{:else}
@@ -287,14 +351,49 @@
 							About
 						</a>
 
-						<!-- Auth buttons -->
+						<!-- Auth button -->
 						<div class="space-y-2 border-t pt-3">
-							<a href="/auth?mode=signin" onclick={closeMobileMenu} class="block">
-								<Button variant="ghost" size="sm" class="w-full justify-start">Sign In</Button>
-							</a>
-							<a href="/auth?mode=signup" onclick={closeMobileMenu} class="block">
-								<Button size="sm" class="w-full">Get Started</Button>
-							</a>
+							<Button
+								size="sm"
+								class="w-full"
+								disabled={authLoading}
+								onclick={() => {
+									closeMobileMenu();
+									handleGitHubAuth();
+								}}
+							>
+								{#if authLoading}
+									<svg class="mr-2 h-4 w-4 animate-spin" viewBox="0 0 24 24">
+										<circle
+											class="opacity-25"
+											cx="12"
+											cy="12"
+											r="10"
+											stroke="currentColor"
+											stroke-width="4"
+											fill="none"
+										></circle>
+										<path
+											class="opacity-75"
+											fill="currentColor"
+											d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+										></path>
+									</svg>
+									Processing...
+								{:else}
+									Sign in with
+									<svg
+										class="h-4 w-4"
+										fill="currentColor"
+										viewBox="0 0 24 24"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"
+										/>
+									</svg>
+								{/if}
+							</Button>
 						</div>
 					{/if}
 				</div>

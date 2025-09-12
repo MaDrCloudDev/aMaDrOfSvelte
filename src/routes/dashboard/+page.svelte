@@ -17,7 +17,7 @@
 			await signOut({
 				fetchOptions: {
 					onSuccess: () => {
-						window.location.href = '/auth?message=Successfully signed out';
+						window.location.href = '/?message=Successfully signed out';
 					}
 				}
 			});
@@ -48,9 +48,6 @@
 							<strong>Member since:</strong>
 							{new Date(data.user.createdAt).toLocaleDateString()}
 						</p>
-					</div>
-					<div class="flex gap-2">
-						<Button variant="destructive" onclick={handleSignOut}>Sign Out</Button>
 					</div>
 				</CardContent>
 			</Card>
