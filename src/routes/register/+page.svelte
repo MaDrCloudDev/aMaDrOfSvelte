@@ -10,9 +10,13 @@
 	import { signIn } from '$lib/auth-client';
 
 	async function handleGitHubSignIn() {
-		await signIn.social({
-			provider: 'github'
-		});
+		try {
+			await signIn.social({
+				provider: 'github'
+			});
+		} catch (error) {
+			console.error('Sign in error:', error);
+		}
 	}
 </script>
 
