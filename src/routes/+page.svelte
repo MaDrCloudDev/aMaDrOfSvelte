@@ -56,7 +56,7 @@
 				</CardHeader>
 				<CardContent>
 					<CardDescription>
-						Argon2 password hashing, proper session handling, and route protection. The security
+						GitHub OAuth authentication, secure session handling, and route protection. The security
 						stuff that actually matters.
 					</CardDescription>
 				</CardContent>

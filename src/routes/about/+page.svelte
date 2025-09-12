@@ -72,7 +72,7 @@
 				</CardHeader>
 				<CardContent class="space-y-3">
 					<ul class="space-y-2 text-muted-foreground">
-						<li>• Sign up and login with email</li>
+						<li>• GitHub OAuth authentication</li>
 						<li>• Sessions that don't randomly expire</li>
 						<li>• Routes that actually stay protected</li>
 					</ul>
