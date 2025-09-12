@@ -7,8 +7,24 @@
 		CardHeader,
 		CardTitle
 	} from '$lib/components/ui/card';
+	import { Button } from '$lib/components/ui/button';
+	import { signOut } from '$lib/auth-client';
 
 	let { data }: { data: PageData } = $props();
+
+	async function handleSignOut() {
+		try {
+			await signOut({
+				fetchOptions: {
+					onSuccess: () => {
+						window.location.href = '/auth?message=Successfully signed out';
+					}
+				}
+			});
+		} catch (error) {
+			console.error('Sign out error:', error);
+		}
+	}
 </script>
 
 <div class="min-h-screen bg-background">
@@ -34,12 +50,7 @@
 						</p>
 					</div>
 					<div class="flex gap-2">
-						<a
-							href="/logout"
-							class="text-destructive-foreground inline-flex h-10 items-center justify-center rounded-md bg-destructive px-4 py-2 text-sm font-medium ring-offset-background transition-colors hover:bg-destructive/90 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
-						>
-							Sign Out
-						</a>
+						<Button variant="destructive" onclick={handleSignOut}>Sign Out</Button>
 					</div>
 				</CardContent>
 			</Card>
