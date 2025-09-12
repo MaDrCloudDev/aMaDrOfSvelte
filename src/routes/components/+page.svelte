@@ -11,9 +11,17 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Alert, AlertDescription } from '$lib/components/ui/alert';
 	import { Separator } from '$lib/components/ui/separator';
+	import { Switch } from '$lib/components/ui/switch';
+	import { Select, SelectContent, SelectItem, SelectTrigger } from '$lib/components/ui/select';
+	import { Textarea } from '$lib/components/ui/textarea';
+	import { Badge } from '$lib/components/ui/badge';
+	import { Tabs, TabsContent, TabsList, TabsTrigger } from '$lib/components/ui/tabs';
 
 	let inputValue = $state('');
 	let emailValue = $state('');
+	let isToggled = $state(false);
+	let selectedOption = $state(['option1']);
+	let textareaValue = $state('');
 </script>
 
 <div class="min-h-screen bg-background">
@@ -22,12 +30,12 @@
 		<div class="mb-8 space-y-4">
 			<h1 class="text-4xl font-bold text-foreground">Component Showcase</h1>
 			<p class="text-xl text-muted-foreground">
-				A few example UI components. Install more from <a
+				Explore a rich set of UI components powered by shadcn-svelte. Install more from <a
 					class="underline"
 					aria-label="Install more components from shadcn-svelte"
 					target="_blank"
 					href="https://shadcn-svelte.com/">shadcn-svelte</a
-				>
+				>.
 			</p>
 		</div>
 
@@ -101,7 +109,124 @@
 								Current value: {inputValue || 'Empty'}
 							</p>
 						</div>
+						<div class="space-y-2">
+							<Label for="textarea-demo">Textarea</Label>
+							<Textarea
+								id="textarea-demo"
+								placeholder="Enter a longer message..."
+								bind:value={textareaValue}
+								class="min-h-[100px]"
+							/>
+							<p class="text-xs text-muted-foreground">
+								Current value: {textareaValue || 'Empty'}
+							</p>
+						</div>
+						<div class="space-y-2">
+							<Label for="select-demo">Select Option</Label>
+							<Select bind:value={selectedOption} type="multiple">
+								<SelectTrigger id="select-demo">
+									<SelectTrigger placeholder="Select an option" />
+								</SelectTrigger>
+								<SelectContent>
+									<SelectItem value="option1">Option 1</SelectItem>
+									<SelectItem value="option2">Option 2</SelectItem>
+									<SelectItem value="option3">Option 3</SelectItem>
+								</SelectContent>
+							</Select>
+							<p class="text-xs text-muted-foreground">
+								Selected: {selectedOption}
+							</p>
+						</div>
 					</div>
+				</CardContent>
+			</Card>
+
+			<!-- Switch Section -->
+			<Card>
+				<CardHeader>
+					<CardTitle>Switch Components</CardTitle>
+					<CardDescription>Toggle switches for enabling or disabling features.</CardDescription>
+				</CardHeader>
+				<CardContent class="space-y-4">
+					<div class="flex items-center space-x-4">
+						<Switch bind:checked={isToggled} />
+						<Label>Enable Notifications</Label>
+					</div>
+					<p class="text-xs text-muted-foreground">
+						Notifications are {isToggled ? 'enabled' : 'disabled'}.
+					</p>
+				</CardContent>
+			</Card>
+
+			<!-- Badge Section -->
+			<Card>
+				<CardHeader>
+					<CardTitle>Badge Components</CardTitle>
+					<CardDescription>Badges for highlighting statuses or categories.</CardDescription>
+				</CardHeader>
+				<CardContent class="space-y-4">
+					<div class="flex flex-wrap gap-2">
+						<Badge>Default</Badge>
+						<Badge variant="secondary">Secondary</Badge>
+						<Badge variant="outline">Outline</Badge>
+						<Badge variant="destructive">Error</Badge>
+						<Badge class="bg-green-500 text-white">Success</Badge>
+					</div>
+				</CardContent>
+			</Card>
+
+			<!-- Tabs Section -->
+			<Card>
+				<CardHeader>
+					<CardTitle>Tabs Components</CardTitle>
+					<CardDescription>Organize content with interactive tabs.</CardDescription>
+				</CardHeader>
+				<CardContent>
+					<Tabs value="tab1" class="w-full">
+						<TabsList class="grid w-full grid-cols-3">
+							<TabsTrigger value="tab1">Tab 1</TabsTrigger>
+							<TabsTrigger value="tab2">Tab 2</TabsTrigger>
+							<TabsTrigger value="tab3">Tab 3</TabsTrigger>
+						</TabsList>
+						<TabsContent value="tab1">
+							<Card>
+								<CardHeader>
+									<CardTitle>Tab 1 Content</CardTitle>
+									<CardDescription>This is the first tab's content.</CardDescription>
+								</CardHeader>
+								<CardContent>
+									<p class="text-muted-foreground">
+										Use tabs to switch between different sections of content without reloading the
+										page.
+									</p>
+								</CardContent>
+							</Card>
+						</TabsContent>
+						<TabsContent value="tab2">
+							<Card>
+								<CardHeader>
+									<CardTitle>Tab 2 Content</CardTitle>
+									<CardDescription>More content for the second tab.</CardDescription>
+								</CardHeader>
+								<CardContent>
+									<p class="text-muted-foreground">
+										Tabs are great for organizing related information in a compact space.
+									</p>
+								</CardContent>
+							</Card>
+						</TabsContent>
+						<TabsContent value="tab3">
+							<Card>
+								<CardHeader>
+									<CardTitle>Tab 3 Content</CardTitle>
+									<CardDescription>Final tab with a button.</CardDescription>
+								</CardHeader>
+								<CardContent>
+									<Button>Click Me</Button>
+								</CardContent>
+							</Card>
+						</TabsContent>
+					</Tabs>
 				</CardContent>
 			</Card>
 
