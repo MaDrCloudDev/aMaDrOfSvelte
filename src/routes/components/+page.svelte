@@ -26,11 +26,10 @@
 
 <div class="min-h-screen bg-background">
 	<div class="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-		<!-- Header -->
 		<div class="mb-8 space-y-4">
 			<h1 class="text-4xl font-bold text-foreground">Component Showcase</h1>
 			<p class="text-xl text-muted-foreground">
-				Explore a rich set of UI components powered by shadcn-svelte. Install more from <a
+				UI components powered by shadcn-svelte. Install more from <a
 					class="underline"
 					aria-label="Install more components from shadcn-svelte"
 					target="_blank"
@@ -38,16 +37,11 @@
 				>.
 			</p>
 		</div>
-
-		<!-- Component Sections -->
 		<div class="space-y-8">
-			<!-- Buttons Section -->
 			<Card>
 				<CardHeader>
 					<CardTitle>Buttons</CardTitle>
-					<CardDescription
-						>Buttons for every occasion. They all work exactly like you'd expect.</CardDescription
-					>
+					<CardDescription>Buttons for every occasion.</CardDescription>
 				</CardHeader>
 				<CardContent class="space-y-6">
 					<div class="space-y-4">
@@ -74,14 +68,10 @@
 					</div>
 				</CardContent>
 			</Card>
-
-			<!-- Form Inputs Section -->
 			<Card>
 				<CardHeader>
 					<CardTitle>Form Components</CardTitle>
-					<CardDescription
-						>Forms that don't make users want to throw their computer out the window.</CardDescription
-					>
+					<CardDescription>Forms too.</CardDescription>
 				</CardHeader>
 				<CardContent class="space-y-4">
 					<div class="grid gap-4 md:grid-cols-2">
@@ -140,8 +130,6 @@
 					</div>
 				</CardContent>
 			</Card>
-
-			<!-- Switch Section -->
 			<Card>
 				<CardHeader>
 					<CardTitle>Switch Components</CardTitle>
@@ -157,8 +145,6 @@
 					</p>
 				</CardContent>
 			</Card>
-
-			<!-- Badge Section -->
 			<Card>
 				<CardHeader>
 					<CardTitle>Badge Components</CardTitle>
@@ -174,8 +160,6 @@
 					</div>
 				</CardContent>
 			</Card>
-
-			<!-- Tabs Section -->
 			<Card>
 				<CardHeader>
 					<CardTitle>Tabs Components</CardTitle>
@@ -229,21 +213,17 @@
 					</Tabs>
 				</CardContent>
 			</Card>
-
-			<!-- Cards Section -->
 			<Card>
 				<CardHeader>
 					<CardTitle>Card Components</CardTitle>
-					<CardDescription
-						>Cards for grouping related stuff together. Pretty straightforward.</CardDescription
-					>
+					<CardDescription>Cards for grouping related stuff together.</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<div class="grid gap-4 md:grid-cols-2">
 						<Card class="border-2">
 							<CardHeader>
 								<CardTitle class="text-lg">Sample Card</CardTitle>
-								<CardDescription>Look, a card inside a card. Cardception.</CardDescription>
+								<CardDescription>Card sample.</CardDescription>
 							</CardHeader>
 							<CardContent>
 								<p class="mb-4 text-muted-foreground">
@@ -252,7 +232,6 @@
 								<Button size="sm">Action Button</Button>
 							</CardContent>
 						</Card>
-
 						<Card class="border-2">
 							<CardHeader>
 								<CardTitle class="text-lg">Another Card</CardTitle>
@@ -273,14 +252,10 @@
 					</div>
 				</CardContent>
 			</Card>
-
-			<!-- Alerts Section -->
 			<Card>
 				<CardHeader>
 					<CardTitle>Alert Components</CardTitle>
-					<CardDescription
-						>When you need to tell users something important (or not so important).</CardDescription
-					>
+					<CardDescription>When you need to tell users something important.</CardDescription>
 				</CardHeader>
 				<CardContent class="space-y-4">
 					<Alert>
@@ -308,12 +283,10 @@
 					</Alert>
 				</CardContent>
 			</Card>
-
-			<!-- Layout Section -->
 			<Card>
 				<CardHeader>
 					<CardTitle>Layout Components</CardTitle>
-					<CardDescription>Lines that separate things. Revolutionary, I know.</CardDescription>
+					<CardDescription>Lines that separate things.</CardDescription>
 				</CardHeader>
 				<CardContent class="space-y-6">
 					<div class="space-y-4">
@@ -335,12 +308,10 @@
 					</div>
 				</CardContent>
 			</Card>
-
-			<!-- Grid Layout Example -->
 			<Card>
 				<CardHeader>
 					<CardTitle>Responsive Grid Layout</CardTitle>
-					<CardDescription>Grids that actually work on mobile. What a concept.</CardDescription>
+					<CardDescription>Grids that actually work on mobile.</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<div class="grid gap-4 md:grid-cols-3">
