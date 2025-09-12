@@ -29,10 +29,10 @@
 			</div>
 
 			<div class="flex flex-col justify-center gap-4 sm:flex-row">
-				<a href="/register">
+				<a href="/auth?mode=signup">
 					<Button size="lg" class="w-full sm:w-auto">Get Started</Button>
 				</a>
-				<a href="/login">
+				<a href="/auth?mode=signin">
 					<Button variant="outline" size="lg" class="w-full sm:w-auto">Sign In</Button>
 				</a>
 			</div>
@@ -132,7 +132,7 @@
 					hacking.
 				</p>
 				<div class="flex flex-col gap-4 sm:flex-row sm:justify-center">
-					<Button size="lg" href="/register">Get Started</Button>
+					<Button size="lg" href="/auth?mode=signup">Get Started</Button>
 					<Button
 						size="lg"
 						variant="outline"

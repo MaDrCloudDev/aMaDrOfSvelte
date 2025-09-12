@@ -7,7 +7,14 @@
 		CardHeader,
 		CardTitle
 	} from '$lib/components/ui/card';
+	import { Alert, AlertDescription } from '$lib/components/ui/alert';
 	import { signIn } from '$lib/auth-client';
+
+	import type { PageData } from './$types';
+
+	let { data }: { data: PageData } = $props();
+
+	const isSignUp = $derived(data.mode === 'signup');
 
 	async function handleGitHubSignIn() {
 		try {
@@ -23,10 +30,20 @@
 <div class="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-background p-4">
 	<Card class="w-full max-w-md">
 		<CardHeader class="space-y-1">
-			<CardTitle class="text-center text-2xl font-bold">Join us</CardTitle>
-			<CardDescription class="text-center">Sign up with your GitHub account</CardDescription>
+			<CardTitle class="text-center text-2xl font-bold">
+				{isSignUp ? 'Join us' : 'Welcome back'}
+			</CardTitle>
+			<CardDescription class="text-center">
+				{isSignUp ? 'Sign up' : 'Sign in'} with your GitHub account
+			</CardDescription>
 		</CardHeader>
 		<CardContent class="space-y-4">
+			{#if data?.message}
+				<Alert>
+					<AlertDescription>{data.message}</AlertDescription>
+				</Alert>
+			{/if}
+
 			<Button class="w-full" onclick={handleGitHubSignIn}>
 				<svg class="mr-2 h-4 w-4" viewBox="0 0 24 24">
 					<path
@@ -37,10 +54,17 @@
 				Continue with GitHub
 			</Button>
 
-			<p class="text-center text-sm text-muted-foreground">
-				Already have an account?
-				<a href="/login" class="font-medium text-primary hover:underline">Sign in</a>
-			</p>
+			{#if !isSignUp}
+				<p class="text-center text-sm text-muted-foreground">
+					Don't have an account?
+					<a href="/auth?mode=signup" class="font-medium text-primary hover:underline">Sign up</a>
+				</p>
+			{:else}
+				<p class="text-center text-sm text-muted-foreground">
+					Already have an account?
+					<a href="/auth?mode=signin" class="font-medium text-primary hover:underline">Sign in</a>
+				</p>
+			{/if}
 		</CardContent>
 	</Card>
 </div>

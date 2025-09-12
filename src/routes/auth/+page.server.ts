@@ -6,7 +6,11 @@ export const load: PageServerLoad = async ({ locals, url }) => {
 		throw redirect(302, '/dashboard');
 	}
 
+	const mode = url.searchParams.get('mode') || 'signin';
+	const message = url.searchParams.get('message');
+
 	return {
-		message: url.searchParams.get('message')
+		mode,
+		message
 	};
 };

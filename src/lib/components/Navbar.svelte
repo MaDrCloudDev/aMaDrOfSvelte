@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { enhance } from '$app/forms';
 	import { Button } from '$lib/components/ui/button';
+	import { signOut } from '$lib/auth-client';
 	import { Separator } from '$lib/components/ui/separator';
 	import { Menu, X } from '@lucide/svelte';
 
@@ -17,6 +17,20 @@
 
 	function closeMobileMenu() {
 		mobileMenuOpen = false;
+	}
+
+	async function handleSignOut() {
+		try {
+			await signOut({
+				fetchOptions: {
+					onSuccess: () => {
+						window.location.href = '/auth?message=Successfully signed out';
+					}
+				}
+			});
+		} catch (error) {
+			console.error('Sign out error:', error);
+		}
 	}
 
 	function handleClickOutside(event: MouseEvent) {
@@ -112,9 +126,9 @@
 						About
 					</a>
 					<a
-						href="/login"
+						href="/auth?mode=signin"
 						class="text-sm font-medium transition-colors hover:text-primary {page.url.pathname ===
-						'/login'
+						'/auth'
 							? 'text-primary'
 							: 'text-muted-foreground'}"
 					>
@@ -168,15 +182,13 @@
 						</span>
 						<Separator orientation="vertical" class="h-4" />
 					</div>
-					<form method="POST" action="/logout" use:enhance>
-						<Button variant="outline" size="sm" type="submit">Logout</Button>
-					</form>
+					<Button variant="outline" size="sm" onclick={handleSignOut}>Logout</Button>
 				{:else}
 					<div class="flex items-center space-x-2">
-						<a href="/login">
+						<a href="/auth?mode=signin">
 							<Button variant="ghost" size="sm">Sign In</Button>
 						</a>
-						<a href="/register">
+						<a href="/auth?mode=signup">
 							<Button size="sm">Get Started</Button>
 						</a>
 					</div>
@@ -230,9 +242,17 @@
 
 						<!-- Logout button -->
 						<div class="border-t pt-3">
-							<form method="POST" action="/logout" use:enhance>
-								<Button variant="outline" size="sm" type="submit" class="w-full">Logout</Button>
-							</form>
+							<Button
+								variant="outline"
+								size="sm"
+								class="w-full"
+								onclick={() => {
+									closeMobileMenu();
+									handleSignOut();
+								}}
+							>
+								Logout
+							</Button>
 						</div>
 					{:else}
 						<!-- Unauthenticated navigation -->
@@ -269,12 +289,12 @@
 
 						<!-- Auth buttons -->
 						<div class="space-y-2 border-t pt-3">
-							<a href="/login" onclick={closeMobileMenu} class="block">
+							<a href="/auth?mode=signin" onclick={closeMobileMenu} class="block">
 								<Button variant="ghost" size="sm" class="w-full justify-start">Sign In</Button>
 							</a>
-							<!-- <a href="/register" onclick={closeMobileMenu} class="block">
+							<a href="/auth?mode=signup" onclick={closeMobileMenu} class="block">
 								<Button size="sm" class="w-full">Get Started</Button>
-							</a> -->
+							</a>
 						</div>
 					{/if}
 				</div>
