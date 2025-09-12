@@ -1,6 +1,7 @@
 import type { Handle } from '@sveltejs/kit';
 import { validateSession } from '$lib/server/auth';
 
+<<<<<<< Updated upstream
 export const handle: Handle = async ({ event, resolve }) => {
 	const sessionId = event.cookies.get('session');
 
@@ -8,6 +9,16 @@ export const handle: Handle = async ({ event, resolve }) => {
 		event.locals.user = null;
 		event.locals.session = null;
 		return resolve(event);
+=======
+export async function handle({ event, resolve }) {
+	const session = await auth.api.getSession({
+		headers: event.request.headers
+	});
+
+	if (session) {
+		event.locals.session = session.session;
+		event.locals.user = session.user;
+>>>>>>> Stashed changes
 	}
 
 	const { user, session } = await validateSession(sessionId);

@@ -4,6 +4,7 @@ import { users, sessions } from './db/schema';
 import { eq } from 'drizzle-orm';
 import { randomBytes } from 'crypto';
 
+<<<<<<< Updated upstream
 export async function hashPassword(password: string): Promise<string> {
 	return await hash(password, {
 		memoryCost: 19456,
@@ -12,6 +13,29 @@ export async function hashPassword(password: string): Promise<string> {
 		parallelism: 1
 	});
 }
+=======
+export const auth = betterAuth({
+	database: drizzleAdapter(db, {
+		provider: 'sqlite'
+	}),
+	secret: BETTER_AUTH_SECRET,
+	baseURL: BETTER_AUTH_URL,
+	emailAndPassword: {
+		enabled: false
+	},
+	socialProviders: {
+		github: {
+			clientId: env.GITHUB_CLIENT_ID || '',
+			clientSecret: env.GITHUB_CLIENT_SECRET || ''
+		}
+	},
+	session: {
+		expiresIn: 60 * 60 * 24 * 30,
+		updateAge: 60 * 60 * 24
+	},
+	plugins: [sveltekitCookies(getRequestEvent)]
+});
+>>>>>>> Stashed changes
 
 export async function verifyPassword(hash: string, password: string): Promise<boolean> {
 	return await verify(hash, password);
