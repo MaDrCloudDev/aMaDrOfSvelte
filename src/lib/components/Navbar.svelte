@@ -7,7 +7,13 @@
 
 	import type { User } from '$lib/server/auth';
 
-	let { user = null }: { user?: User | null } = $props();
+	let {
+		user = null,
+		onGitHubAuth
+	}: {
+		user?: User | null;
+		onGitHubAuth?: () => Promise<void>;
+	} = $props();
 	let mobileMenuOpen = $state(false);
 	let navElement: HTMLElement;
 	let authLoading = $state(false);

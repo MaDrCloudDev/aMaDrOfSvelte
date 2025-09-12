@@ -22,7 +22,7 @@
 	"devDependencies": {
 		"@internationalized/date": "^3.8.1",
 		"@libsql/client": "^0.14.0",
-		"@lucide/svelte": "^0.543.0",
+		"@lucide/svelte": "^0.515.0",
 		"@sveltejs/adapter-auto": "^6.0.0",
 		"@sveltejs/kit": "^2.22.0",
 		"@sveltejs/vite-plugin-svelte": "^6.0.0",
