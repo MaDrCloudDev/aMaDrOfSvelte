@@ -1,11 +1,17 @@
 import { redirect } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
+import type { Actions } from './$types';
 import { auth } from '$lib/server/auth';
 
-export const load: PageServerLoad = async ({ request }) => {
-	await auth.api.signOut({
-		headers: request.headers
-	});
+export const actions: Actions = {
+	default: async ({ request }) => {
+		try {
+			await auth.api.signOut({
+				headers: request.headers
+			});
+		} catch (error) {
+			// Ignore errors if user is already signed out
+		}
 
-	throw redirect(302, '/login?message=Successfully signed out');
+		throw redirect(302, '/login?message=Successfully signed out');
+	}
 };
