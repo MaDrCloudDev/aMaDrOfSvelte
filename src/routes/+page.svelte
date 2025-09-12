@@ -128,13 +128,20 @@
 			<div class="space-y-6 text-center">
 				<h2 class="text-3xl font-bold">Let's build something cool</h2>
 				<p class="mx-auto max-w-xl text-muted-foreground">
-					Sign up and see how everything works, or just clone the repo and start hacking.
+					Sign in with GitHub and see how everything works, or just clone the repo and start
+					hacking.
 				</p>
-				<a href="/register">
-					<Button size="lg" target="_blank" href="https://github.com/madrclouddev/amadrofsvelte"
-						>aMaDrOfSvelte Repo</Button
+				<div class="flex flex-col gap-4 sm:flex-row sm:justify-center">
+					<Button size="lg" href="/register">Get Started</Button>
+					<Button
+						size="lg"
+						variant="outline"
+						href="https://github.com/madrclouddev/amadrofsvelte"
+						target="_blank"
 					>
-				</a>
+						View on GitHub
+					</Button>
+				</div>
 			</div>
 		</div>
 	</div>

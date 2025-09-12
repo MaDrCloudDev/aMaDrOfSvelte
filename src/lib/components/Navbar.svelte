@@ -3,11 +3,40 @@
 	import { enhance } from '$app/forms';
 	import { Button } from '$lib/components/ui/button';
 	import { Separator } from '$lib/components/ui/separator';
+	import { Menu, X } from '@lucide/svelte';
 
-	let { user = null }: { user?: { id: number; email: string } | null } = $props();
+	import type { User } from '$lib/server/auth';
+
+	let { user = null }: { user?: User | null } = $props();
+	let mobileMenuOpen = $state(false);
+	let navElement: HTMLElement;
+
+	function toggleMobileMenu() {
+		mobileMenuOpen = !mobileMenuOpen;
+	}
+
+	function closeMobileMenu() {
+		mobileMenuOpen = false;
+	}
+
+	function handleClickOutside(event: MouseEvent) {
+		if (mobileMenuOpen && navElement && !navElement.contains(event.target as Node)) {
+			closeMobileMenu();
+		}
+	}
+
+	// Close mobile menu on escape key
+	function handleKeydown(event: KeyboardEvent) {
+		if (event.key === 'Escape' && mobileMenuOpen) {
+			closeMobileMenu();
+		}
+	}
 </script>
 
+<svelte:window onclick={handleClickOutside} onkeydown={handleKeydown} />
+
 <nav
+	bind:this={navElement}
 	class="fixed top-0 right-0 left-0 z-50 border-b bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60"
 >
 	<div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -94,8 +123,23 @@
 				{/if}
 			</div>
 
+			<!-- Mobile Menu Button -->
+			<div class="flex items-center space-x-3 md:hidden">
+				<button
+					onclick={toggleMobileMenu}
+					class="flex h-9 w-9 items-center justify-center rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground"
+					aria-label="Toggle mobile menu"
+				>
+					{#if mobileMenuOpen}
+						<X class="h-4 w-4" />
+					{:else}
+						<Menu class="h-4 w-4" />
+					{/if}
+				</button>
+			</div>
+
 			<!-- User Actions -->
-			<div class="flex items-center space-x-3">
+			<div class="hidden items-center space-x-3 md:flex">
 				<!-- GitHub Link -->
 				<a
 					href="https://github.com/MaDrCloudDev/aMaDrOfSvelte"
@@ -103,6 +147,7 @@
 					rel="noopener noreferrer"
 					class="flex h-9 w-9 items-center justify-center rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground"
 					title="View on GitHub"
+					aria-label="View project on GitHub"
 				>
 					<svg
 						class="h-4 w-4"
@@ -138,6 +183,103 @@
 				{/if}
 			</div>
 		</div>
+
+		<!-- Mobile Menu -->
+		{#if mobileMenuOpen}
+			<div
+				class="border-t bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/80 md:hidden"
+			>
+				<div class="space-y-1 px-4 pt-2 pb-3">
+					{#if user}
+						<!-- User info on mobile -->
+						<div class="mb-3 border-b pb-3">
+							<p class="text-sm font-medium text-foreground">{user.email}</p>
+						</div>
+
+						<!-- Authenticated navigation -->
+						<a
+							href="/dashboard"
+							onclick={closeMobileMenu}
+							class="block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground {page
+								.url.pathname === '/dashboard'
+								? 'bg-accent text-accent-foreground'
+								: 'text-muted-foreground'}"
+						>
+							Dashboard
+						</a>
+						<a
+							href="/components"
+							onclick={closeMobileMenu}
+							class="block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground {page
+								.url.pathname === '/components'
+								? 'bg-accent text-accent-foreground'
+								: 'text-muted-foreground'}"
+						>
+							Components
+						</a>
+						<a
+							href="/about"
+							onclick={closeMobileMenu}
+							class="block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground {page
+								.url.pathname === '/about'
+								? 'bg-accent text-accent-foreground'
+								: 'text-muted-foreground'}"
+						>
+							About
+						</a>
+
+						<!-- Logout button -->
+						<div class="border-t pt-3">
+							<form method="POST" action="/logout" use:enhance>
+								<Button variant="outline" size="sm" type="submit" class="w-full">Logout</Button>
+							</form>
+						</div>
+					{:else}
+						<!-- Unauthenticated navigation -->
+						<a
+							href="/"
+							onclick={closeMobileMenu}
+							class="block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground {page
+								.url.pathname === '/'
+								? 'bg-accent text-accent-foreground'
+								: 'text-muted-foreground'}"
+						>
+							Home
+						</a>
+						<a
+							href="/components"
+							onclick={closeMobileMenu}
+							class="block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground {page
+								.url.pathname === '/components'
+								? 'bg-accent text-accent-foreground'
+								: 'text-muted-foreground'}"
+						>
+							Components
+						</a>
+						<a
+							href="/about"
+							onclick={closeMobileMenu}
+							class="block rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground {page
+								.url.pathname === '/about'
+								? 'bg-accent text-accent-foreground'
+								: 'text-muted-foreground'}"
+						>
+							About
+						</a>
+
+						<!-- Auth buttons -->
+						<div class="space-y-2 border-t pt-3">
+							<a href="/login" onclick={closeMobileMenu} class="block">
+								<Button variant="ghost" size="sm" class="w-full justify-start">Sign In</Button>
+							</a>
+							<!-- <a href="/register" onclick={closeMobileMenu} class="block">
+								<Button size="sm" class="w-full">Get Started</Button>
+							</a> -->
+						</div>
+					{/if}
+				</div>
+			</div>
+		{/if}
 	</div>
 </nav>
 

@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
-	import type { ActionData } from './$types';
 	import { Button } from '$lib/components/ui/button';
 	import {
 		Card,
@@ -9,14 +7,6 @@
 		CardHeader,
 		CardTitle
 	} from '$lib/components/ui/card';
-<<<<<<< Updated upstream
-	import { Input } from '$lib/components/ui/input';
-	import { Label } from '$lib/components/ui/label';
-	import { Alert, AlertDescription } from '$lib/components/ui/alert';
-	import { Separator } from '$lib/components/ui/separator';
-
-	let { form }: { form: ActionData } = $props();
-=======
 	import { signIn } from '$lib/auth-client';
 
 	async function handleGitHubSignIn() {
@@ -24,24 +14,14 @@
 			provider: 'github'
 		});
 	}
->>>>>>> Stashed changes
 </script>
 
 <div class="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-background p-4">
 	<Card class="w-full max-w-md">
 		<CardHeader class="space-y-1">
-			<CardTitle class="text-center text-2xl font-bold">Create account</CardTitle>
-			<CardDescription class="text-center">Sign up!</CardDescription>
+			<CardTitle class="text-center text-2xl font-bold">Join us</CardTitle>
+			<CardDescription class="text-center">Sign up with your GitHub account</CardDescription>
 		</CardHeader>
-<<<<<<< Updated upstream
-		<CardContent>
-			<form class="space-y-4" method="POST" use:enhance>
-				{#if form?.error}
-					<Alert variant="destructive">
-						<AlertDescription>{form.error}</AlertDescription>
-					</Alert>
-				{/if}
-=======
 		<CardContent class="space-y-4">
 			<Button class="w-full" onclick={handleGitHubSignIn}>
 				<svg class="mr-2 h-4 w-4" viewBox="0 0 24 24">
@@ -52,55 +32,11 @@
 				</svg>
 				Continue with GitHub
 			</Button>
->>>>>>> Stashed changes
 
-				<div class="space-y-2">
-					<Label for="email">Email</Label>
-					<Input
-						id="email"
-						name="email"
-						type="email"
-						placeholder="Enter your email"
-						autocomplete="email"
-						required
-						value={form?.email ?? ''}
-					/>
-				</div>
-
-				<div class="space-y-2">
-					<Label for="password">Password</Label>
-					<Input
-						id="password"
-						name="password"
-						type="password"
-						placeholder="Create a password"
-						autocomplete="new-password"
-						required
-					/>
-				</div>
-
-				<div class="space-y-2">
-					<Label for="confirmPassword">Confirm Password</Label>
-					<Input
-						id="confirmPassword"
-						name="confirmPassword"
-						type="password"
-						placeholder="Confirm your password"
-						autocomplete="new-password"
-						required
-					/>
-				</div>
-
-				<Button type="submit" class="w-full">Create account</Button>
-			</form>
-
-			<div class="mt-6">
-				<Separator />
-				<p class="mt-4 text-center text-sm text-muted-foreground">
-					Already have an account?
-					<a href="/login" class="font-medium text-primary hover:underline"> Sign in </a>
-				</p>
-			</div>
+			<p class="text-center text-sm text-muted-foreground">
+				Already have an account?
+				<a href="/login" class="font-medium text-primary hover:underline">Sign in</a>
+			</p>
 		</CardContent>
 	</Card>
 </div>

@@ -23,10 +23,24 @@
 						You are successfully logged in as {data.user.email}
 					</CardDescription>
 				</CardHeader>
-				<CardContent>
-					<p class="text-muted-foreground">
-						This is a template dashboard. You can start building your application from here.
-					</p>
+				<CardContent class="space-y-4">
+					<div class="grid gap-2">
+						<p><strong>Name:</strong> {data.user.name || 'Not set'}</p>
+						<p><strong>Email:</strong> {data.user.email}</p>
+						<p><strong>Email Verified:</strong> {data.user.emailVerified ? 'Yes' : 'No'}</p>
+						<p>
+							<strong>Member since:</strong>
+							{new Date(data.user.createdAt).toLocaleDateString()}
+						</p>
+					</div>
+					<div class="flex gap-2">
+						<a
+							href="/logout"
+							class="text-destructive-foreground inline-flex h-10 items-center justify-center rounded-md bg-destructive px-4 py-2 text-sm font-medium ring-offset-background transition-colors hover:bg-destructive/90 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
+						>
+							Sign Out
+						</a>
+					</div>
 				</CardContent>
 			</Card>
 
@@ -86,10 +100,11 @@
 						<div class="space-y-2">
 							<h4 class="font-medium">Authentication</h4>
 							<ul class="space-y-1 text-sm text-muted-foreground">
-								<li>• User registration & login</li>
-								<li>• Password hashing with Argon2</li>
+								<li>• GitHub OAuth authentication</li>
+								<li>• Better Auth framework</li>
 								<li>• Session management</li>
 								<li>• Protected routes</li>
+								<li>• One-click sign in</li>
 							</ul>
 						</div>
 						<div class="space-y-2">

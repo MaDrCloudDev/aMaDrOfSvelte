@@ -1,14 +1,11 @@
 import { redirect } from '@sveltejs/kit';
-import type { Actions } from './$types';
-import { invalidateSession } from '$lib/server/auth';
+import type { PageServerLoad } from './$types';
+import { auth } from '$lib/server/auth';
 
-export const actions: Actions = {
-	default: async ({ locals, cookies }) => {
-		if (locals.session) {
-			await invalidateSession(locals.session.id);
-		}
+export const load: PageServerLoad = async ({ request }) => {
+	await auth.api.signOut({
+		headers: request.headers
+	});
 
-		cookies.delete('session', { path: '/' });
-		throw redirect(302, '/login');
-	}
+	throw redirect(302, '/login?message=Successfully signed out');
 };
