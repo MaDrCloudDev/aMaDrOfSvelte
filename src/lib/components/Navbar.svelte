@@ -82,7 +82,6 @@
 >
 	<div class="container mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="flex h-16 items-center justify-between">
-			<!-- Logo/Brand -->
 			<div class="flex items-center space-x-4">
 				<a href="/" class="flex items-center space-x-3">
 					<img
@@ -93,8 +92,6 @@
 					<span class="font-semibold text-foreground">aMaDrOfSvelte</span>
 				</a>
 			</div>
-
-			<!-- Navigation Links -->
 			<div class="hidden items-center space-x-6 md:flex">
 				{#if user}
 					<a
@@ -154,8 +151,6 @@
 					</a>
 				{/if}
 			</div>
-
-			<!-- Mobile Menu Button -->
 			<div class="flex items-center space-x-3 md:hidden">
 				<button
 					onclick={toggleMobileMenu}
@@ -169,10 +164,7 @@
 					{/if}
 				</button>
 			</div>
-
-			<!-- User Actions -->
 			<div class="hidden items-center space-x-3 md:flex">
-				<!-- GitHub Link -->
 				<a
 					href="https://github.com/MaDrCloudDev/aMaDrOfSvelte"
 					target="_blank"
@@ -193,7 +185,6 @@
 					</svg>
 					Repo
 				</a>
-
 				{#if user}
 					<div class="hidden items-center space-x-3 sm:flex">
 						<span class="mr-0 text-sm text-muted-foreground">
@@ -244,20 +235,15 @@
 				</Button>
 			</div>
 		</div>
-
-		<!-- Mobile Menu -->
 		{#if mobileMenuOpen}
 			<div
 				class="border-t bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/80 md:hidden"
 			>
 				<div class="space-y-1 px-4 pt-2 pb-3">
 					{#if user}
-						<!-- User info on mobile -->
 						<div class="mb-3 border-b pb-3">
 							<p class="text-sm font-medium text-foreground">{user.email}</p>
 						</div>
-
-						<!-- Authenticated navigation -->
 						<a
 							href="/dashboard"
 							onclick={closeMobileMenu}
@@ -288,8 +274,6 @@
 						>
 							About
 						</a>
-
-						<!-- Logout button -->
 						<div class="border-t pt-3">
 							<Button
 								variant="outline"
@@ -325,7 +309,6 @@
 							</Button>
 						</div>
 					{:else}
-						<!-- Unauthenticated navigation -->
 						<a
 							href="/"
 							onclick={closeMobileMenu}
@@ -356,8 +339,6 @@
 						>
 							About
 						</a>
-
-						<!-- Auth button -->
 						<div class="space-y-2 border-t pt-3">
 							<Button
 								size="sm"
@@ -407,6 +388,5 @@
 		{/if}
 	</div>
 </nav>
-
 <!-- Spacer to prevent content from hiding behind fixed navbar -->
 <div class="h-16"></div>
