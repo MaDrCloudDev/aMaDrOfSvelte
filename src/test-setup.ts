@@ -1,6 +1,5 @@
 import { vi } from 'vitest';
 
-// Mock matchMedia for components that use mode-watcher
 Object.defineProperty(window, 'matchMedia', {
 	writable: true,
 	value: vi.fn().mockImplementation((query) => ({

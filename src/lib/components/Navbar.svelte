@@ -13,7 +13,6 @@
 		navigateToSettings,
 		openGitHubRepo
 	} from '$lib/auth-utils';
-
 	import type { User } from '$lib/server/auth';
 
 	let {
