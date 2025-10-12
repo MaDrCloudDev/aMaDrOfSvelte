@@ -4,8 +4,25 @@
 
 @custom-variant dark (&:is(.dark *));
 
-* {
+html {
 	scrollbar-gutter: stable;
+}
+
+body {
+	scrollbar-gutter: stable;
+	overflow-y: scroll;
+}
+
+body[data-scroll-locked],
+body[data-bits-prevent-scroll],
+body[data-prevent-scroll],
+body[style*='overflow'],
+body[style*='padding-right'],
+body[style*='margin-right'] {
+	padding-right: 0 !important;
+	margin-right: 0 !important;
+	overflow-y: scroll !important;
+	overflow-x: visible !important;
 }
 
 @layer base {
