@@ -7,20 +7,18 @@
 		CardHeader,
 		CardTitle
 	} from '$lib/components/ui/card';
-	import { signIn } from '$lib/auth-client';
+	import { handleGitHubSignIn } from '$lib/auth-utils';
 
 	let authLoading = $state(false);
 
-	async function handleGitHubSignIn() {
+	async function handleSignInClick() {
 		if (authLoading) return;
 		authLoading = true;
 		try {
-			await signIn.social({
-				provider: 'github',
-				callbackURL: '/dashboard'
-			});
+			await handleGitHubSignIn();
 		} catch (error) {
 			console.error('Sign in error:', error);
+		} finally {
 			authLoading = false;
 		}
 	}
@@ -39,11 +37,11 @@
 				</div>
 				<h1 class="text-4xl font-bold tracking-tight sm:text-6xl">aMaDrOfSvelte</h1>
 				<p class="mx-auto max-w-2xl text-xl text-muted-foreground">
-					SvelteKit, Tailwind 4, and all the good stuff you actually want to use.
+					SvelteKit template with auth, database, UI components, and PWA support.
 				</p>
 			</div>
 			<div class="flex flex-col justify-center gap-4 sm:flex-row">
-				<Button onclick={handleGitHubSignIn} disabled={authLoading}>
+				<Button onclick={handleSignInClick} disabled={authLoading}>
 					{#if authLoading}
 						<svg class="mr-2 h-4 w-4 animate-spin" viewBox="0 0 24 24">
 							<circle
@@ -74,60 +72,59 @@
 	</div>
 	<div class="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
 		<div class="mb-12 space-y-4 text-center">
-			<h2 class="text-3xl font-bold">Skip the tedium</h2>
-			<p class="mx-auto max-w-2xl text-muted-foreground">This is my stack.</p>
+			<h2 class="text-3xl font-bold">What's included</h2>
 		</div>
 		<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 			<Card>
 				<CardHeader>
-					<CardTitle class="flex items-center gap-2">🔐 Secure Authentication</CardTitle>
+					<CardTitle>Authentication</CardTitle>
 				</CardHeader>
 				<CardContent>
 					<CardDescription>
-						GitHub OAuth authentication, secure session handling, and route protection.
+						GitHub OAuth with Better Auth. Session management and route protection.
 					</CardDescription>
 				</CardContent>
 			</Card>
 			<Card>
 				<CardHeader>
-					<CardTitle class="flex items-center gap-2">🎨 Modern UI</CardTitle>
+					<CardTitle>UI Components</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<CardDescription>
-						shadcn-svelte components and Tailwind 4 for when you need to customize things.
-					</CardDescription>
+					<CardDescription>shadcn-svelte components with Tailwind CSS 4.</CardDescription>
 				</CardContent>
 			</Card>
 			<Card>
 				<CardHeader>
-					<CardTitle class="flex items-center gap-2">🚀 Fast Database</CardTitle>
+					<CardTitle>Database</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<CardDescription>Turso is fast and Drizzle keeps your queries type-safe.</CardDescription>
+					<CardDescription>Turso SQLite with Drizzle ORM for type-safe queries.</CardDescription>
 				</CardContent>
 			</Card>
 			<Card>
 				<CardHeader>
-					<CardTitle class="flex items-center gap-2">⚡ SvelteKit</CardTitle>
+					<CardTitle>SvelteKit</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<CardDescription>SvelteKit with runes for reactivity.</CardDescription>
+					<CardDescription>Full-stack framework with Svelte 5 runes.</CardDescription>
 				</CardContent>
 			</Card>
 			<Card>
 				<CardHeader>
-					<CardTitle class="flex items-center gap-2">🛠️ Developer Experience</CardTitle>
+					<CardTitle>TypeScript</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<CardDescription>TypeScript, hot reload, and powerful tooling.</CardDescription>
+					<CardDescription>End-to-end type safety with hot reload.</CardDescription>
 				</CardContent>
 			</Card>
 			<Card>
 				<CardHeader>
-					<CardTitle class="flex items-center gap-2">📱 Responsive Design</CardTitle>
+					<CardTitle>PWA Ready</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<CardDescription>Looks good on phones, tablets, and desktops.</CardDescription>
+					<CardDescription
+						>Install as native app with offline caching and service worker.</CardDescription
+					>
 				</CardContent>
 			</Card>
 		</div>
