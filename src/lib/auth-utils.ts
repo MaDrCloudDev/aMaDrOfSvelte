@@ -1,17 +1,16 @@
 import { signIn, signOut } from '$lib/auth-client';
 import { toast } from 'svelte-sonner';
-import { goto } from '$app/navigation';
+import { goto, invalidateAll } from '$app/navigation';
 import { ROUTES } from './constants';
 
 export async function handleSignOut(): Promise<void> {
 	try {
 		await signOut({
 			fetchOptions: {
-				onSuccess: () => {
+				onSuccess: async () => {
 					toast.success('Successfully signed out!');
-					setTimeout(() => {
-						goto(ROUTES.HOME);
-					}, 1000);
+					await invalidateAll();
+					goto(ROUTES.HOME);
 				}
 			}
 		});

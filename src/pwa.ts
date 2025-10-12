@@ -4,7 +4,6 @@ let wb: Workbox;
 
 export function initPWA() {
 	if ('serviceWorker' in navigator) {
-		// In development, check if service worker exists before registering
 		if (import.meta.env.DEV) {
 			fetch('/service-worker.js')
 				.then((response) => {
