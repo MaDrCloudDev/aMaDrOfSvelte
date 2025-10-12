@@ -7,31 +7,13 @@
 		CardHeader,
 		CardTitle
 	} from '$lib/components/ui/card';
-	import { Button } from '$lib/components/ui/button';
-	import { signOut } from '$lib/auth-client';
 
 	let { data }: { data: PageData } = $props();
-
-	async function handleSignOut() {
-		try {
-			await signOut({
-				fetchOptions: {
-					onSuccess: () => {
-						window.location.href = '/?message=Successfully signed out';
-					}
-				}
-			});
-		} catch (error) {
-			console.error('Sign out error:', error);
-		}
-	}
 </script>
 
 <div class="min-h-screen bg-background">
-	<!-- Main Content -->
 	<main class="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
 		<div class="grid gap-6">
-			<!-- Welcome Card -->
 			<Card>
 				<CardHeader>
 					<CardTitle>Welcome to your Dashboard!</CardTitle>
@@ -52,7 +34,6 @@
 				</CardContent>
 			</Card>
 
-			<!-- Stats Grid -->
 			<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
 				<Card>
 					<CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -95,33 +76,30 @@
 				</Card>
 			</div>
 
-			<!-- Features Card -->
 			<Card>
 				<CardHeader>
 					<CardTitle>Template Features</CardTitle>
-					<CardDescription>
-						This template includes the following features out of the box
-					</CardDescription>
+					<CardDescription>Production-ready features included in this template</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<div class="grid gap-4 md:grid-cols-2">
 						<div class="space-y-2">
 							<h4 class="font-medium">Authentication</h4>
 							<ul class="space-y-1 text-sm text-muted-foreground">
-								<li>• GitHub OAuth authentication</li>
+								<li>• GitHub OAuth integration</li>
 								<li>• Better Auth framework</li>
 								<li>• Session management</li>
-								<li>• Protected routes</li>
-								<li>• One-click sign in</li>
+								<li>• Route protection</li>
+								<li>• Social authentication</li>
 							</ul>
 						</div>
 						<div class="space-y-2">
 							<h4 class="font-medium">Tech Stack</h4>
 							<ul class="space-y-1 text-sm text-muted-foreground">
-								<li>• SvelteKit</li>
+								<li>• SvelteKit framework</li>
 								<li>• Tailwind CSS 4</li>
-								<li>• shadcn-svelte</li>
-								<li>• Drizzle ORM + Turso</li>
+								<li>• shadcn-svelte components</li>
+								<li>• Drizzle ORM with Turso</li>
 							</ul>
 						</div>
 					</div>

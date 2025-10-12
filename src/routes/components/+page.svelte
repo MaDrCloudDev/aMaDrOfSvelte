@@ -16,6 +16,7 @@
 	import { Textarea } from '$lib/components/ui/textarea';
 	import { Badge } from '$lib/components/ui/badge';
 	import { Tabs, TabsContent, TabsList, TabsTrigger } from '$lib/components/ui/tabs';
+	import { SHADCN_SVELTE_URL } from '$lib/constants';
 
 	let inputValue = $state('');
 	let emailValue = $state('');
@@ -33,7 +34,7 @@
 					class="underline"
 					aria-label="Install more components from shadcn-svelte"
 					target="_blank"
-					href="https://shadcn-svelte.com/">shadcn-svelte</a
+					href={SHADCN_SVELTE_URL}>shadcn-svelte</a
 				>.
 			</p>
 		</div>
@@ -71,7 +72,7 @@
 			<Card>
 				<CardHeader>
 					<CardTitle>Form Components</CardTitle>
-					<CardDescription>Forms too.</CardDescription>
+					<CardDescription>Input fields and form controls.</CardDescription>
 				</CardHeader>
 				<CardContent class="space-y-4">
 					<div class="grid gap-4 md:grid-cols-2">
@@ -216,18 +217,18 @@
 			<Card>
 				<CardHeader>
 					<CardTitle>Card Components</CardTitle>
-					<CardDescription>Cards for grouping related stuff together.</CardDescription>
+					<CardDescription>Content containers with headers and actions.</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<div class="grid gap-4 md:grid-cols-2">
 						<Card class="border-2">
 							<CardHeader>
 								<CardTitle class="text-lg">Sample Card</CardTitle>
-								<CardDescription>Card sample.</CardDescription>
+								<CardDescription>Example card with content and actions.</CardDescription>
 							</CardHeader>
 							<CardContent>
 								<p class="mb-4 text-muted-foreground">
-									Cards are perfect for organizing related information into digestible sections.
+									Cards organize related information into sections.
 								</p>
 								<Button size="sm">Action Button</Button>
 							</CardContent>
@@ -235,7 +236,7 @@
 						<Card class="border-2">
 							<CardHeader>
 								<CardTitle class="text-lg">Another Card</CardTitle>
-								<CardDescription>Cards can hold whatever you want</CardDescription>
+								<CardDescription>Cards support various content types.</CardDescription>
 							</CardHeader>
 							<CardContent>
 								<div class="space-y-2">
@@ -255,7 +256,7 @@
 			<Card>
 				<CardHeader>
 					<CardTitle>Alert Components</CardTitle>
-					<CardDescription>When you need to tell users something important.</CardDescription>
+					<CardDescription>Status messages and notifications.</CardDescription>
 				</CardHeader>
 				<CardContent class="space-y-4">
 					<Alert>
@@ -286,7 +287,7 @@
 			<Card>
 				<CardHeader>
 					<CardTitle>Layout Components</CardTitle>
-					<CardDescription>Lines that separate things.</CardDescription>
+					<CardDescription>Visual separators and dividers.</CardDescription>
 				</CardHeader>
 				<CardContent class="space-y-6">
 					<div class="space-y-4">
@@ -311,7 +312,7 @@
 			<Card>
 				<CardHeader>
 					<CardTitle>Responsive Grid Layout</CardTitle>
-					<CardDescription>Grids that actually work on mobile.</CardDescription>
+					<CardDescription>Mobile-first grid system.</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<div class="grid gap-4 md:grid-cols-3">
