@@ -8,8 +8,6 @@
 		CardTitle
 	} from '$lib/components/ui/card';
 	import { handleGitHubSignIn } from '$lib/auth-utils';
-	import GitHubIcon from '$lib/components/icons/GitHubIcon.svelte';
-	import SpinnerIcon from '$lib/components/icons/SpinnerIcon.svelte';
 
 	let authLoading = $state(false);
 
@@ -18,6 +16,8 @@
 		authLoading = true;
 		try {
 			await handleGitHubSignIn();
+		} catch (error) {
+			console.error('Sign in error:', error);
 		} finally {
 			authLoading = false;
 		}
@@ -37,8 +37,7 @@
 				</div>
 				<h1 class="text-4xl font-bold tracking-tight sm:text-6xl">aMaDrOfSvelte</h1>
 				<p class="mx-auto max-w-2xl text-xl text-muted-foreground">
-					SvelteKit 2 + Svelte 5 starter with Better Auth (GitHub OAuth), Drizzle ORM, Turso
-					(libSQL), Tailwind CSS 4, shadcn-svelte, and PWA support.
+					SvelteKit template with auth, database, UI components, and PWA support.
 				</p>
 			</div>
 			<div class="flex flex-col justify-center gap-4 sm:flex-row">
@@ -65,7 +64,7 @@
 				</CardHeader>
 				<CardContent>
 					<CardDescription>
-						Better Auth with GitHub OAuth, cookie sessions, and protected route guards.
+						GitHub OAuth with Better Auth. Session management and route protection.
 					</CardDescription>
 				</CardContent>
 			</Card>
@@ -74,9 +73,7 @@
 					<CardTitle>UI Components</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<CardDescription
-						>shadcn-svelte primitives styled with Tailwind CSS 4 design tokens.</CardDescription
-					>
+					<CardDescription>shadcn-svelte components with Tailwind CSS 4.</CardDescription>
 				</CardContent>
 			</Card>
 			<Card>
@@ -84,9 +81,7 @@
 					<CardTitle>Database</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<CardDescription
-						>Turso (libSQL) with Drizzle ORM for end-to-end typed queries.</CardDescription
-					>
+					<CardDescription>Turso SQLite with Drizzle ORM for type-safe queries.</CardDescription>
 				</CardContent>
 			</Card>
 			<Card>
@@ -94,7 +89,7 @@
 					<CardTitle>SvelteKit</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<CardDescription>Server routes, SSR, and Svelte 5 runes in one project.</CardDescription>
+					<CardDescription>Full-stack framework with Svelte 5 runes.</CardDescription>
 				</CardContent>
 			</Card>
 			<Card>
@@ -102,7 +97,7 @@
 					<CardTitle>TypeScript</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<CardDescription>Strict typing across routes, auth, and database models.</CardDescription>
+					<CardDescription>End-to-end type safety with hot reload.</CardDescription>
 				</CardContent>
 			</Card>
 			<Card>
@@ -111,7 +106,7 @@
 				</CardHeader>
 				<CardContent>
 					<CardDescription
-						>Manifest + Workbox service worker with install prompt support.</CardDescription
+						>Install as native app with offline caching and service worker.</CardDescription
 					>
 				</CardContent>
 			</Card>
