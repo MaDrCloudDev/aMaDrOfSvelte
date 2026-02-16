@@ -1,14 +1,8 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-describe('DarkModeToggle Component', () => {
-	it('should be importable', async () => {
+describe('DarkModeToggle', () => {
+	it('is importable', async () => {
 		const module = await import('../../src/lib/components/DarkModeToggle.svelte');
 		expect(module.default).toBeDefined();
-	});
-});
-
-describe('Utils', () => {
-	it('should perform basic arithmetic', () => {
-		expect(2 + 2).toBe(4);
 	});
 });
