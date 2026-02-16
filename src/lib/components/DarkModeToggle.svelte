@@ -1,30 +1,19 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
 	import { onMount } from 'svelte';
+	import { applyDarkMode, getInitialDarkMode } from '$lib/theme';
 
 	let darkMode = $state(false);
 
 	onMount(() => {
-		const saved = localStorage.getItem('darkMode');
 		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-		darkMode = saved ? saved === 'true' : prefersDark;
-		updateTheme();
+		darkMode = getInitialDarkMode(localStorage, prefersDark);
+		applyDarkMode(darkMode, document.documentElement, localStorage);
 	});
-
-	function updateTheme() {
-		if (darkMode) {
-			document.documentElement.classList.add('dark');
-			localStorage.setItem('darkMode', 'true');
-		} else {
-			document.documentElement.classList.remove('dark');
-			localStorage.setItem('darkMode', 'false');
-		}
-	}
 
 	function toggleDarkMode() {
 		darkMode = !darkMode;
-		updateTheme();
+		applyDarkMode(darkMode, document.documentElement, localStorage);
 	}
 </script>
 

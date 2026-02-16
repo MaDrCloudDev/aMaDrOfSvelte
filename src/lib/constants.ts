@@ -7,6 +7,5 @@ export const ROUTES = {
 	DASHBOARD: '/dashboard',
 	COMPONENTS: '/components',
 	ABOUT: '/about',
-	SETTINGS: '/dashboard?tab=settings',
 	GITHUB_REPO: GITHUB_REPO_URL
 } as const;

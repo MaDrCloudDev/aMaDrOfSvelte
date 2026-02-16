@@ -2,13 +2,19 @@
 	import { onMount } from 'svelte';
 	import { Button } from '$lib/components/ui/button';
 
-	let deferredPrompt = $state<any>(null);
+	type BeforeInstallPromptEvent = Event & {
+		prompt: () => Promise<void>;
+		userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>;
+	};
+
+	let deferredPrompt = $state<BeforeInstallPromptEvent | null>(null);
 	let showInstallPrompt = $state(false);
 
 	onMount(() => {
-		function handleBeforeInstallPrompt(e: Event) {
-			e.preventDefault();
-			deferredPrompt = e;
+		function handleBeforeInstallPrompt(event: Event) {
+			const installPromptEvent = event as BeforeInstallPromptEvent;
+			installPromptEvent.preventDefault();
+			deferredPrompt = installPromptEvent;
 			showInstallPrompt = true;
 		}
 
@@ -28,7 +34,7 @@
 
 	async function installApp() {
 		if (deferredPrompt) {
-			deferredPrompt.prompt();
+			await deferredPrompt.prompt();
 			const result = await deferredPrompt.userChoice;
 			if (result.outcome === 'accepted') {
 				showInstallPrompt = false;
