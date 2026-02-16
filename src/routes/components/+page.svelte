@@ -18,19 +18,37 @@
 	import { Tabs, TabsContent, TabsList, TabsTrigger } from '$lib/components/ui/tabs';
 	import { SHADCN_SVELTE_URL } from '$lib/constants';
 
-	let inputValue = $state('');
-	let emailValue = $state('');
-	let isToggled = $state(false);
-	let selectedOption = $state(['option1']);
-	let textareaValue = $state('');
+	const planLabels = {
+		starter: 'Starter',
+		pro: 'Pro',
+		enterprise: 'Enterprise'
+	} as const;
+
+	const priorityLabels = {
+		normal: 'Normal',
+		high: 'High',
+		critical: 'Critical'
+	} as const;
+
+	let nameValue = $state('Ada Lovelace');
+	let emailValue = $state('ada@example.com');
+	let bioValue = $state(
+		'Building production SvelteKit apps with auth, typed data, and reusable UI.'
+	);
+	let notificationsEnabled = $state(true);
+	let marketingEmails = $state(false);
+	let billingPlan = $state<keyof typeof planLabels>('pro');
+	let priority = $state<keyof typeof priorityLabels>('normal');
 </script>
 
 <div class="min-h-screen bg-background">
 	<div class="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-		<div class="mb-8 space-y-4">
-			<h1 class="text-4xl font-bold text-foreground">Component Showcase</h1>
-			<p class="text-xl text-muted-foreground">
-				UI components powered by shadcn-svelte. Install more from <a
+		<div class="mb-8 space-y-3">
+			<h1 class="text-4xl font-bold text-foreground">Component Playground</h1>
+			<p class="max-w-3xl text-lg text-muted-foreground">
+				Focused examples of shadcn-svelte components in realistic UI patterns. Add more components
+				from
+				<a
 					class="underline"
 					aria-label="Install more components from shadcn-svelte"
 					target="_blank"
@@ -38,32 +56,60 @@
 				>.
 			</p>
 		</div>
-		<div class="space-y-8">
-			<Card>
-				<CardHeader>
-					<CardTitle>Buttons</CardTitle>
-					<CardDescription>Buttons for every occasion.</CardDescription>
-				</CardHeader>
-				<CardContent class="space-y-6">
-					<div class="space-y-4">
-						<div>
-							<h4 class="mb-3 text-sm font-medium">Button Variants</h4>
-							<div class="flex flex-wrap gap-2">
-								<Button>Default</Button>
-								<Button variant="secondary">Secondary</Button>
-								<Button variant="outline">Outline</Button>
-								<Button variant="ghost">Ghost</Button>
-								<Button variant="link">Link</Button>
-								<Button variant="destructive">Destructive</Button>
+
+		<Tabs value="forms" class="space-y-6">
+			<TabsList class="grid w-full grid-cols-3 md:max-w-xl">
+				<TabsTrigger value="forms">Forms</TabsTrigger>
+				<TabsTrigger value="feedback">Feedback</TabsTrigger>
+				<TabsTrigger value="layout">Layout</TabsTrigger>
+			</TabsList>
+
+			<TabsContent value="forms" class="space-y-6">
+				<div class="grid gap-6 lg:grid-cols-2">
+					<Card>
+						<CardHeader>
+							<CardTitle>Profile Form</CardTitle>
+							<CardDescription>
+								Inputs, labels, textarea, and action buttons in a common account settings flow.
+							</CardDescription>
+						</CardHeader>
+						<CardContent class="space-y-4">
+							<div class="space-y-2">
+								<Label for="name-demo">Name</Label>
+								<Input id="name-demo" type="text" bind:value={nameValue} />
 							</div>
-						</div>
-						<Separator />
-						<div>
-							<h4 class="mb-3 text-sm font-medium">Button Sizes</h4>
-							<div class="flex flex-wrap items-center gap-2">
-								<Button size="sm">Small</Button>
-								<Button size="default">Default</Button>
-								<Button size="lg">Large</Button>
+							<div class="space-y-2">
+								<Label for="email-demo">Email</Label>
+								<Input id="email-demo" type="email" bind:value={emailValue} />
+							</div>
+							<div class="space-y-2">
+								<Label for="bio-demo">Bio</Label>
+								<Textarea id="bio-demo" bind:value={bioValue} class="min-h-[110px]" />
+							</div>
+							<Separator />
+							<div class="flex flex-wrap gap-2">
+								<Button size="sm">Save Changes</Button>
+								<Button size="sm" variant="outline">Cancel</Button>
+							</div>
+						</CardContent>
+					</Card>
+
+					<Card>
+						<CardHeader>
+							<CardTitle>Preferences</CardTitle>
+							<CardDescription>
+								Switches and selects for feature flags, plans, and priority controls.
+							</CardDescription>
+						</CardHeader>
+						<CardContent class="space-y-5">
+							<div class="flex items-center justify-between rounded-md border p-3">
+								<div>
+									<p class="text-sm font-medium">Product Updates</p>
+									<p class="text-xs text-muted-foreground">
+										Enable release and changelog notifications.
+									</p>
+								</div>
+								<Switch bind:checked={notificationsEnabled} />
 							</div>
 						</div>
 					</div>
@@ -127,87 +173,79 @@
 							<p class="text-xs text-muted-foreground">
 								Selected: {selectedOption}
 							</p>
+						</CardContent>
+					</Card>
+
+					<Card>
+						<CardHeader>
+							<CardTitle>Alert States</CardTitle>
+							<CardDescription>
+								Informational, warning, and destructive messaging patterns.
+							</CardDescription>
+						</CardHeader>
+						<CardContent class="space-y-3">
+							<Alert>
+								<AlertDescription>
+									Deployment completed and cache invalidation succeeded.
+								</AlertDescription>
+							</Alert>
+							<Alert class="border-yellow-500 text-yellow-700 dark:text-yellow-400">
+								<AlertDescription>
+									Token expires soon. Rotate secrets before next release window.
+								</AlertDescription>
+							</Alert>
+							<Alert variant="destructive">
+								<AlertDescription>
+									Database auth failed. Verify `DATABASE_AUTH_TOKEN` and network access.
+								</AlertDescription>
+							</Alert>
+						</CardContent>
+					</Card>
+				</div>
+			</TabsContent>
+
+			<TabsContent value="layout" class="space-y-6">
+				<Card>
+					<CardHeader>
+						<CardTitle>Card + Separator Composition</CardTitle>
+						<CardDescription>
+							A common dashboard block with grouped actions and metric cards.
+						</CardDescription>
+					</CardHeader>
+					<CardContent class="space-y-6">
+						<div class="flex flex-wrap items-center gap-3">
+							<Button size="sm">Primary Action</Button>
+							<Button size="sm" variant="secondary">Secondary Action</Button>
+							<Separator orientation="vertical" class="h-5" />
+							<Button size="sm" variant="outline">Open Logs</Button>
 						</div>
-					</div>
-				</CardContent>
-			</Card>
-			<Card>
-				<CardHeader>
-					<CardTitle>Switch Components</CardTitle>
-					<CardDescription>Toggle switches for enabling or disabling features.</CardDescription>
-				</CardHeader>
-				<CardContent class="space-y-4">
-					<div class="flex items-center space-x-4">
-						<Switch bind:checked={isToggled} />
-						<Label>Enable Notifications</Label>
-					</div>
-					<p class="text-xs text-muted-foreground">
-						Notifications are {isToggled ? 'enabled' : 'disabled'}.
-					</p>
-				</CardContent>
-			</Card>
-			<Card>
-				<CardHeader>
-					<CardTitle>Badge Components</CardTitle>
-					<CardDescription>Badges for highlighting statuses or categories.</CardDescription>
-				</CardHeader>
-				<CardContent class="space-y-4">
-					<div class="flex flex-wrap gap-2">
-						<Badge>Default</Badge>
-						<Badge variant="secondary">Secondary</Badge>
-						<Badge variant="outline">Outline</Badge>
-						<Badge variant="destructive">Error</Badge>
-						<Badge class="bg-green-500 text-white">Success</Badge>
-					</div>
-				</CardContent>
-			</Card>
-			<Card>
-				<CardHeader>
-					<CardTitle>Tabs Components</CardTitle>
-					<CardDescription>Organize content with interactive tabs.</CardDescription>
-				</CardHeader>
-				<CardContent>
-					<Tabs value="tab1" class="w-full">
-						<TabsList class="grid w-full grid-cols-3">
-							<TabsTrigger value="tab1">Tab 1</TabsTrigger>
-							<TabsTrigger value="tab2">Tab 2</TabsTrigger>
-							<TabsTrigger value="tab3">Tab 3</TabsTrigger>
-						</TabsList>
-						<TabsContent value="tab1">
+						<Separator />
+						<div class="grid gap-4 md:grid-cols-3">
 							<Card>
 								<CardHeader>
-									<CardTitle>Tab 1 Content</CardTitle>
-									<CardDescription>This is the first tab's content.</CardDescription>
+									<CardTitle class="text-base">Requests</CardTitle>
 								</CardHeader>
 								<CardContent>
-									<p class="text-muted-foreground">
-										Use tabs to switch between different sections of content without reloading the
-										page.
-									</p>
+									<p class="text-2xl font-semibold">12,480</p>
+									<p class="text-xs text-muted-foreground">Last 24 hours</p>
 								</CardContent>
 							</Card>
-						</TabsContent>
-						<TabsContent value="tab2">
 							<Card>
 								<CardHeader>
-									<CardTitle>Tab 2 Content</CardTitle>
-									<CardDescription>More content for the second tab.</CardDescription>
+									<CardTitle class="text-base">Error Rate</CardTitle>
 								</CardHeader>
 								<CardContent>
-									<p class="text-muted-foreground">
-										Tabs are great for organizing related information in a compact space.
-									</p>
+									<p class="text-2xl font-semibold">0.14%</p>
+									<p class="text-xs text-muted-foreground">Stable</p>
 								</CardContent>
 							</Card>
-						</TabsContent>
-						<TabsContent value="tab3">
 							<Card>
 								<CardHeader>
-									<CardTitle>Tab 3 Content</CardTitle>
-									<CardDescription>Final tab with a button.</CardDescription>
+									<CardTitle class="text-base">Latency P95</CardTitle>
 								</CardHeader>
 								<CardContent>
-									<Button>Click Me</Button>
+									<p class="text-2xl font-semibold">184ms</p>
+									<p class="text-xs text-muted-foreground">Edge region average</p>
 								</CardContent>
 							</Card>
 						</TabsContent>
@@ -324,13 +362,9 @@
 							<h3 class="mb-2 font-semibold">Column 2</h3>
 							<p class="text-sm text-muted-foreground">Responsive grid item</p>
 						</div>
-						<div class="rounded-lg border-2 border-dashed border-border p-6 text-center">
-							<h3 class="mb-2 font-semibold">Column 3</h3>
-							<p class="text-sm text-muted-foreground">Responsive grid item</p>
-						</div>
-					</div>
-				</CardContent>
-			</Card>
-		</div>
+					</CardContent>
+				</Card>
+			</TabsContent>
+		</Tabs>
 	</div>
 </div>

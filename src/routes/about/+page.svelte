@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
 	import {
 		Card,
 		CardContent,
@@ -8,11 +7,12 @@
 		CardTitle
 	} from '$lib/components/ui/card';
 	import { Badge } from '$lib/components/ui/badge';
+	import { Separator } from '$lib/components/ui/separator';
 </script>
 
 <div class="min-h-screen bg-background">
 	<div class="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-		<div class="mb-12 space-y-4 text-center">
+		<div class="mb-10 space-y-3 text-center">
 			<h1 class="text-4xl font-bold text-foreground">About aMaDrOfSvelte</h1>
 			<p class="mx-auto max-w-2xl text-xl text-muted-foreground">
 				Modern stack for rapid development.
@@ -33,16 +33,14 @@
 							<Badge>SvelteKit</Badge>
 							<Badge>Svelte 5</Badge>
 							<Badge>TypeScript</Badge>
-							<Badge>Vite</Badge>
 						</div>
 					</div>
 					<div class="space-y-3">
 						<h3 class="flex items-center gap-2 font-semibold">Styling</h3>
 						<div class="flex flex-wrap gap-2">
-							<Badge>Tailwind CSS 4</Badge>
-							<Badge>shadcn-svelte</Badge>
-							<Badge>CSS Variables</Badge>
-							<Badge>Dark Mode</Badge>
+							<Badge>Better Auth</Badge>
+							<Badge>GitHub OAuth</Badge>
+							<Badge>Cookie Sessions</Badge>
 						</div>
 					</div>
 					<div class="space-y-3">
@@ -69,6 +67,7 @@
 					</ul>
 				</CardContent>
 			</Card>
+
 			<Card>
 				<CardHeader>
 					<CardTitle>Developer Experience</CardTitle>
@@ -84,10 +83,12 @@
 				</CardContent>
 			</Card>
 		</div>
-		<Card class="mb-8">
+
+		<Card class="mt-6">
 			<CardHeader>
-				<CardTitle>Architecture Overview</CardTitle>
-				<CardDescription>How the different parts of aMaDrOfSvelte work together</CardDescription>
+				<CardTitle>Request Lifecycle in This Repo</CardTitle>
+				<CardDescription>How a typical authenticated request flows through the app.</CardDescription
+				>
 			</CardHeader>
 			<CardContent>
 				<div class="space-y-6">
