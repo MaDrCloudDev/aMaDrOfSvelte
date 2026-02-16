@@ -28,4 +28,4 @@ vite.config.ts.timestamp-*
 .vscode/
 .vscode
 vscode
-CONTEXT.md
+context.md

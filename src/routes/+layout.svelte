@@ -1,6 +1,5 @@
 <script lang="ts">
 	import '../app.css';
-	import type { Snippet } from 'svelte';
 	import type { LayoutData } from './$types';
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
@@ -9,7 +8,7 @@
 	import { Toaster } from '$lib/components/ui/sonner';
 	import { initPWA } from '../pwa';
 
-	let { children, data }: { children?: Snippet; data: LayoutData } = $props();
+	let { children, data }: { children: any; data: LayoutData } = $props();
 
 	let hideNavbar = $derived(page.route.id === '/auth' || page.route.id?.startsWith('/auth/'));
 

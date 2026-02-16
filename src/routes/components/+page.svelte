@@ -111,60 +111,67 @@
 								</div>
 								<Switch bind:checked={notificationsEnabled} />
 							</div>
-							<div class="flex items-center justify-between rounded-md border p-3">
-								<div>
-									<p class="text-sm font-medium">Marketing Emails</p>
-									<p class="text-xs text-muted-foreground">Receive announcements and tips.</p>
-								</div>
-								<Switch bind:checked={marketingEmails} />
-							</div>
-							<div class="space-y-2">
-								<Label for="plan-demo">Billing Plan</Label>
-								<Select bind:value={billingPlan} type="single">
-									<SelectTrigger id="plan-demo">{planLabels[billingPlan]}</SelectTrigger>
-									<SelectContent>
-										<SelectItem value="starter">Starter</SelectItem>
-										<SelectItem value="pro">Pro</SelectItem>
-										<SelectItem value="enterprise">Enterprise</SelectItem>
-									</SelectContent>
-								</Select>
-							</div>
-							<div class="space-y-2">
-								<Label for="priority-demo">Incident Priority</Label>
-								<Select bind:value={priority} type="single">
-									<SelectTrigger id="priority-demo">{priorityLabels[priority]}</SelectTrigger>
-									<SelectContent>
-										<SelectItem value="normal">Normal</SelectItem>
-										<SelectItem value="high">High</SelectItem>
-										<SelectItem value="critical">Critical</SelectItem>
-									</SelectContent>
-								</Select>
-							</div>
-						</CardContent>
-					</Card>
-				</div>
-			</TabsContent>
-
-			<TabsContent value="feedback" class="space-y-6">
-				<div class="grid gap-6 lg:grid-cols-2">
-					<Card>
-						<CardHeader>
-							<CardTitle>Status Badges</CardTitle>
-							<CardDescription>
-								Compact labels for resource state and workflow metadata.
-							</CardDescription>
-						</CardHeader>
-						<CardContent class="space-y-4">
-							<div class="flex flex-wrap gap-2">
-								<Badge>Active</Badge>
-								<Badge variant="secondary">Pending</Badge>
-								<Badge variant="outline">Draft</Badge>
-								<Badge variant="destructive">Failed</Badge>
-							</div>
-							<Separator />
-							<p class="text-sm text-muted-foreground">
-								Current settings: {planLabels[billingPlan]} plan, {priorityLabels[priority]} priority,
-								updates {notificationsEnabled ? 'enabled' : 'disabled'}.
+						</div>
+					</div>
+				</CardContent>
+			</Card>
+			<Card>
+				<CardHeader>
+					<CardTitle>Form Components</CardTitle>
+					<CardDescription>Input fields and form controls.</CardDescription>
+				</CardHeader>
+				<CardContent class="space-y-4">
+					<div class="grid gap-4 md:grid-cols-2">
+						<div class="space-y-2">
+							<Label for="email-demo">Email Address</Label>
+							<Input
+								id="email-demo"
+								type="email"
+								placeholder="Enter your email"
+								bind:value={emailValue}
+							/>
+							<p class="text-xs text-muted-foreground">
+								Current value: {emailValue || 'Empty'}
+							</p>
+						</div>
+						<div class="space-y-2">
+							<Label for="text-demo">Text Input</Label>
+							<Input
+								id="text-demo"
+								type="text"
+								placeholder="Enter some text"
+								bind:value={inputValue}
+							/>
+							<p class="text-xs text-muted-foreground">
+								Current value: {inputValue || 'Empty'}
+							</p>
+						</div>
+						<div class="space-y-2">
+							<Label for="textarea-demo">Textarea</Label>
+							<Textarea
+								id="textarea-demo"
+								placeholder="Enter a longer message..."
+								bind:value={textareaValue}
+								class="min-h-[100px]"
+							/>
+							<p class="text-xs text-muted-foreground">
+								Current value: {textareaValue || 'Empty'}
+							</p>
+						</div>
+						<div class="space-y-2">
+							<Label for="select-demo">Select Option</Label>
+							<Select bind:value={selectedOption} type="multiple">
+								<SelectTrigger id="select-demo">
+									<SelectTrigger placeholder="Select an option" />
+								</SelectTrigger>
+								<SelectContent>
+									<SelectItem value="option1">Option 1</SelectItem>
+									<SelectItem value="option2">Option 2</SelectItem>
+									<SelectItem value="option3">Option 3</SelectItem>
+								</SelectContent>
+							</Select>
+							<p class="text-xs text-muted-foreground">
+								Selected: {selectedOption}
 							</p>
 						</CardContent>
 					</Card>
@@ -241,6 +248,119 @@
 									<p class="text-xs text-muted-foreground">Edge region average</p>
 								</CardContent>
 							</Card>
+						</TabsContent>
+					</Tabs>
+				</CardContent>
+			</Card>
+			<Card>
+				<CardHeader>
+					<CardTitle>Card Components</CardTitle>
+					<CardDescription>Content containers with headers and actions.</CardDescription>
+				</CardHeader>
+				<CardContent>
+					<div class="grid gap-4 md:grid-cols-2">
+						<Card class="border-2">
+							<CardHeader>
+								<CardTitle class="text-lg">Sample Card</CardTitle>
+								<CardDescription>Example card with content and actions.</CardDescription>
+							</CardHeader>
+							<CardContent>
+								<p class="mb-4 text-muted-foreground">
+									Cards organize related information into sections.
+								</p>
+								<Button size="sm">Action Button</Button>
+							</CardContent>
+						</Card>
+						<Card class="border-2">
+							<CardHeader>
+								<CardTitle class="text-lg">Another Card</CardTitle>
+								<CardDescription>Cards support various content types.</CardDescription>
+							</CardHeader>
+							<CardContent>
+								<div class="space-y-2">
+									<div class="flex justify-between">
+										<span class="text-sm">Progress</span>
+										<span class="text-sm font-medium">75%</span>
+									</div>
+									<div class="h-2 w-full rounded-full bg-secondary">
+										<div class="h-2 rounded-full bg-primary" style="width: 75%"></div>
+									</div>
+								</div>
+							</CardContent>
+						</Card>
+					</div>
+				</CardContent>
+			</Card>
+			<Card>
+				<CardHeader>
+					<CardTitle>Alert Components</CardTitle>
+					<CardDescription>Status messages and notifications.</CardDescription>
+				</CardHeader>
+				<CardContent class="space-y-4">
+					<Alert>
+						<AlertDescription>
+							This is a default alert. It provides helpful information or context.
+						</AlertDescription>
+					</Alert>
+
+					<Alert variant="destructive">
+						<AlertDescription>
+							This is a destructive alert. It indicates an error or warning state.
+						</AlertDescription>
+					</Alert>
+
+					<Alert class="border-green-500 text-green-700 dark:text-green-400">
+						<AlertDescription>
+							This is a success alert with custom styling for positive feedback.
+						</AlertDescription>
+					</Alert>
+
+					<Alert class="border-yellow-500 text-yellow-700 dark:text-yellow-400">
+						<AlertDescription>
+							This is a warning alert to draw attention to important information.
+						</AlertDescription>
+					</Alert>
+				</CardContent>
+			</Card>
+			<Card>
+				<CardHeader>
+					<CardTitle>Layout Components</CardTitle>
+					<CardDescription>Visual separators and dividers.</CardDescription>
+				</CardHeader>
+				<CardContent class="space-y-6">
+					<div class="space-y-4">
+						<div>
+							<h4 class="mb-3 text-sm font-medium">Horizontal Separator</h4>
+							<p class="text-muted-foreground">Content above separator</p>
+							<Separator class="my-4" />
+							<p class="text-muted-foreground">Content below separator</p>
+						</div>
+
+						<div>
+							<h4 class="mb-3 text-sm font-medium">Vertical Separator</h4>
+							<div class="flex items-center space-x-4">
+								<span class="text-muted-foreground">Left content</span>
+								<Separator orientation="vertical" class="h-4" />
+								<span class="text-muted-foreground">Right content</span>
+							</div>
+						</div>
+					</div>
+				</CardContent>
+			</Card>
+			<Card>
+				<CardHeader>
+					<CardTitle>Responsive Grid Layout</CardTitle>
+					<CardDescription>Mobile-first grid system.</CardDescription>
+				</CardHeader>
+				<CardContent>
+					<div class="grid gap-4 md:grid-cols-3">
+						<div class="rounded-lg border-2 border-dashed border-border p-6 text-center">
+							<h3 class="mb-2 font-semibold">Column 1</h3>
+							<p class="text-sm text-muted-foreground">Responsive grid item</p>
+						</div>
+						<div class="rounded-lg border-2 border-dashed border-border p-6 text-center">
+							<h3 class="mb-2 font-semibold">Column 2</h3>
+							<p class="text-sm text-muted-foreground">Responsive grid item</p>
 						</div>
 					</CardContent>
 				</Card>
