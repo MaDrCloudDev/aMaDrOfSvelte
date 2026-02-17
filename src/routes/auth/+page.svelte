@@ -14,7 +14,7 @@
 	let { data }: { data: PageData } = $props();
 
 	let authLoading = $state(false);
-	let authError = $state(data.error || '');
+	let authError = $state('');
 
 	async function handleGitHubSignIn() {
 		if (authLoading) return;
@@ -55,9 +55,9 @@
 				</Alert>
 			{/if}
 
-			{#if authError}
+			{#if data.error || authError}
 				<Alert variant="destructive">
-					<AlertDescription>{authError}</AlertDescription>
+					<AlertDescription>{authError || data.error}</AlertDescription>
 				</Alert>
 			{/if}
 
