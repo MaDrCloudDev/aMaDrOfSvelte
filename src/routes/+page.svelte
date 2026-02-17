@@ -8,6 +8,8 @@
 		CardTitle
 	} from '$lib/components/ui/card';
 	import { handleGitHubSignIn } from '$lib/auth-utils';
+	import GitHubIcon from '$lib/components/icons/GitHubIcon.svelte';
+	import SpinnerIcon from '$lib/components/icons/SpinnerIcon.svelte';
 
 	let authLoading = $state(false);
 
@@ -36,8 +38,9 @@
 					/>
 				</div>
 				<h1 class="text-4xl font-bold tracking-tight sm:text-6xl">aMaDrOfSvelte</h1>
-				<p class="mx-auto max-w-2xl text-xl text-muted-foreground">
-					SvelteKit template with auth, database, UI components, and PWA support.
+				<p class="mx-auto max-w-3xl text-xl text-muted-foreground">
+					SvelteKit 2 + Svelte 5 runes starter with Better Auth (GitHub OAuth), Drizzle ORM,
+					Turso/libSQL, Tailwind CSS 4, and shadcn-svelte components.
 				</p>
 			</div>
 			<div class="flex flex-col justify-center gap-4 sm:flex-row">
@@ -53,6 +56,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
 		<div class="mb-12 space-y-4 text-center">
 			<h2 class="text-3xl font-bold">What's included</h2>
@@ -64,50 +68,58 @@
 				</CardHeader>
 				<CardContent>
 					<CardDescription>
-						GitHub OAuth with Better Auth. Session management and route protection.
+						Better Auth with GitHub OAuth, session cookies, and server-side route protection.
 					</CardDescription>
 				</CardContent>
 			</Card>
 			<Card>
 				<CardHeader>
-					<CardTitle>UI Components</CardTitle>
+					<CardTitle>Database + ORM</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<CardDescription>shadcn-svelte components with Tailwind CSS 4.</CardDescription>
+					<CardDescription>
+						Turso/libSQL with Drizzle schema + typed queries for end-to-end TypeScript flow.
+					</CardDescription>
 				</CardContent>
 			</Card>
 			<Card>
 				<CardHeader>
-					<CardTitle>Database</CardTitle>
+					<CardTitle>UI System</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<CardDescription>Turso SQLite with Drizzle ORM for type-safe queries.</CardDescription>
+					<CardDescription>
+						Tailwind CSS 4 tokens with shadcn-svelte primitives ready for app-level composition.
+					</CardDescription>
 				</CardContent>
 			</Card>
 			<Card>
 				<CardHeader>
-					<CardTitle>SvelteKit</CardTitle>
+					<CardTitle>SvelteKit Architecture</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<CardDescription>Full-stack framework with Svelte 5 runes.</CardDescription>
+					<CardDescription>
+						SvelteKit 2 routing and server loads using Svelte 5 runes across interactive pages.
+					</CardDescription>
 				</CardContent>
 			</Card>
 			<Card>
 				<CardHeader>
-					<CardTitle>TypeScript</CardTitle>
+					<CardTitle>PWA Baseline</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<CardDescription>End-to-end type safety with hot reload.</CardDescription>
+					<CardDescription>
+						Vite PWA + Workbox setup with install prompt and offline-ready asset caching.
+					</CardDescription>
 				</CardContent>
 			</Card>
 			<Card>
 				<CardHeader>
-					<CardTitle>PWA Ready</CardTitle>
+					<CardTitle>DX Tooling</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<CardDescription
-						>Install as native app with offline caching and service worker.</CardDescription
-					>
+					<CardDescription>
+						Bun scripts for check, lint, test, build, and Drizzle migration workflows.
+					</CardDescription>
 				</CardContent>
 			</Card>
 		</div>
