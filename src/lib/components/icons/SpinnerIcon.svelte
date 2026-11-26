@@ -4,7 +4,7 @@
 	let { class: className, ...restProps }: SVGAttributes<SVGSVGElement> = $props();
 </script>
 
-<svg viewBox="0 0 24 24" class={className} {...restProps}>
+<svg viewBox="0 0 24 24" aria-hidden="true" class={className} {...restProps}>
 	<circle
 		class="opacity-25"
 		cx="12"

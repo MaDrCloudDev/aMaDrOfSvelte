@@ -1,18 +1,7 @@
-<script lang="ts" module>
-	import { Dialog as DialogPrimitive } from 'bits-ui';
-</script>
-
 <script lang="ts">
-	import type { Snippet } from 'svelte';
+	import { Dialog as DialogPrimitive } from 'bits-ui';
 
-	type Props = {
-		open?: boolean;
-		children: Snippet;
-	};
-
-	let { open = $bindable(false), children }: Props = $props();
+	let { open = $bindable(false), ...restProps }: DialogPrimitive.RootProps = $props();
 </script>
 
-<DialogPrimitive.Root bind:open>
-	{@render children()}
-</DialogPrimitive.Root>
+<DialogPrimitive.Root bind:open {...restProps} />

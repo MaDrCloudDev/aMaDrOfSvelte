@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [2.0]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    # checked by src/env.ts at build time, dummy values are fine
+    env:
+      DATABASE_URL: file:ci.db
+      BETTER_AUTH_SECRET: ci-placeholder-secret-at-least-32-characters
+      GITHUB_CLIENT_ID: ci
+      GITHUB_CLIENT_SECRET: ci
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
+      - run: bun install --frozen-lockfile
+      - run: bun run check
+      - run: bun run lint
+      - run: bun run test:run
+      - run: bun run build

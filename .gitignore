@@ -24,9 +24,11 @@ vite.config.ts.timestamp-*
 
 # SQLite
 *.db
+*.db-journal
+*.db-shm
+*.db-wal
 
-.vscode/
-.vscode
-vscode
-context.md
-CONTEXT.md
+# Editors
+.vscode/*
+!.vscode/extensions.json
+.idea

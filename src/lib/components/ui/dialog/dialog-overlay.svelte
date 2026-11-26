@@ -1,22 +1,20 @@
 <script lang="ts">
 	import { Dialog as DialogPrimitive } from 'bits-ui';
-	import { cn } from '$lib/utils.js';
-	import type { Snippet } from 'svelte';
+	import { cn } from '#lib/utils.js';
 
-	type Props = {
-		class?: string;
-		children?: Snippet;
-	};
-
-	let { class: className, children, ...restProps }: Props = $props();
+	let {
+		ref = $bindable(null),
+		class: className,
+		...restProps
+	}: DialogPrimitive.OverlayProps = $props();
 </script>
 
 <DialogPrimitive.Overlay
+	bind:ref
+	data-slot="dialog-overlay"
 	class={cn(
-		'fixed inset-0 z-50 bg-background/80 backdrop-blur-sm data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0',
+		'fixed inset-0 isolate z-50 bg-black/10 duration-100 data-closed:animate-out data-closed:fade-out-0 data-open:animate-in data-open:fade-in-0 supports-backdrop-filter:backdrop-blur-xs',
 		className
 	)}
 	{...restProps}
->
-	{@render children?.()}
-</DialogPrimitive.Overlay>
+/>

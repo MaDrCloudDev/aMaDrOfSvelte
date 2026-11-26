@@ -1,14 +1,9 @@
-import { describe, it, expect } from 'vitest';
+import { existsSync } from 'node:fs';
+import { describe, expect, it } from 'vitest';
+import { ROUTES } from '../../src/lib/constants.ts';
 
-describe('Constants', () => {
-	it('should export ROUTES object with all necessary routes', async () => {
-		const module = await import('../../src/lib/constants');
-		expect(module.ROUTES).toBeDefined();
-		expect(module.ROUTES.HOME).toBe('/');
-		expect(module.ROUTES.DASHBOARD).toBe('/dashboard');
-		expect(module.ROUTES.COMPONENTS).toBe('/components');
-		expect(module.ROUTES.ABOUT).toBe('/about');
-		expect(module.ROUTES.SETTINGS).toBe('/dashboard?tab=settings');
-		expect(module.GITHUB_REPO_URL).toBeDefined();
+describe('ROUTES', () => {
+	it.each(Object.entries(ROUTES))('%s (%s) points at a real page', (_name, path) => {
+		expect(existsSync(`src/routes${path}/+page.svelte`.replace('//', '/'))).toBe(true);
 	});
 });

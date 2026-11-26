@@ -12,27 +12,29 @@ CREATE TABLE `account` (
 	`password` text,
 	`createdAt` integer NOT NULL,
 	`updatedAt` integer NOT NULL,
-	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE no action
+	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
+CREATE INDEX `account_userId_idx` ON `account` (`userId`);--> statement-breakpoint
 CREATE TABLE `session` (
 	`id` text PRIMARY KEY NOT NULL,
 	`expiresAt` integer NOT NULL,
 	`token` text NOT NULL,
-	`createdAt` integer NOT NULL,
-	`updatedAt` integer NOT NULL,
 	`ipAddress` text,
 	`userAgent` text,
 	`userId` text NOT NULL,
-	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE no action
+	`createdAt` integer NOT NULL,
+	`updatedAt` integer NOT NULL,
+	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `session_token_unique` ON `session` (`token`);--> statement-breakpoint
+CREATE INDEX `session_userId_idx` ON `session` (`userId`);--> statement-breakpoint
 CREATE TABLE `user` (
 	`id` text PRIMARY KEY NOT NULL,
-	`name` text,
+	`name` text NOT NULL,
 	`email` text NOT NULL,
-	`emailVerified` integer,
+	`emailVerified` integer DEFAULT false NOT NULL,
 	`image` text,
 	`createdAt` integer NOT NULL,
 	`updatedAt` integer NOT NULL
@@ -44,9 +46,8 @@ CREATE TABLE `verification` (
 	`identifier` text NOT NULL,
 	`value` text NOT NULL,
 	`expiresAt` integer NOT NULL,
-	`createdAt` integer,
-	`updatedAt` integer
+	`createdAt` integer NOT NULL,
+	`updatedAt` integer NOT NULL
 );
 --> statement-breakpoint
-DROP TABLE `sessions`;--> statement-breakpoint
-DROP TABLE `users`;
+CREATE INDEX `verification_identifier_idx` ON `verification` (`identifier`);

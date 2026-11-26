@@ -1,110 +1,98 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-	import {
-		Card,
-		CardContent,
-		CardDescription,
-		CardHeader,
-		CardTitle
-	} from '$lib/components/ui/card';
+	import { Badge } from '#lib/components/ui/badge/index.ts';
+	import * as Card from '#lib/components/ui/card/index.ts';
+	import { APP_NAME } from '#lib/constants.ts';
+	import type { PageProps } from './$types';
 
-	let { data }: { data: PageData } = $props();
+	let { data }: PageProps = $props();
+
+	const dateFormat = new Intl.DateTimeFormat(undefined, { dateStyle: 'medium' });
+	const dateTimeFormat = new Intl.DateTimeFormat(undefined, {
+		dateStyle: 'medium',
+		timeStyle: 'short'
+	});
+
+	const stats = $derived([
+		{ label: 'Registered users', value: data.stats.users, hint: 'Rows in the user table' },
+		{
+			label: 'Active sessions',
+			value: data.stats.activeSessions,
+			hint: 'Unexpired sessions, all users'
+		},
+		{
+			label: 'Linked providers',
+			value: data.stats.providers.length,
+			hint: data.stats.providers.join(', ') || 'None'
+		},
+		{
+			label: 'Member since',
+			value: dateFormat.format(data.user.createdAt),
+			hint: data.user.emailVerified ? 'Email verified' : 'Email not verified'
+		}
+	]);
+
+	function describeAgent(userAgent: string | null): string {
+		if (!userAgent) return 'Unknown device';
+		const browser = /(Firefox|Edg|Chrome|Safari)\/[\d.]+/.exec(userAgent)?.[1] ?? 'Browser';
+		const os = /(Windows|Mac OS X|Android|iPhone|Linux)/.exec(userAgent)?.[1] ?? 'unknown OS';
+		return `${browser === 'Edg' ? 'Edge' : browser} on ${os.replace('Mac OS X', 'macOS')}`;
+	}
 </script>
 
-<div class="min-h-screen bg-background">
-	<main class="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-		<div class="grid gap-6">
-			<Card>
-				<CardHeader>
-					<CardTitle>Welcome to your Dashboard!</CardTitle>
-					<CardDescription>
-						You are successfully logged in as {data.user.email}
-					</CardDescription>
-				</CardHeader>
-				<CardContent class="space-y-4">
-					<div class="grid gap-2">
-						<p><strong>Name:</strong> {data.user.name || 'Not set'}</p>
-						<p><strong>Email:</strong> {data.user.email}</p>
-						<p><strong>Email Verified:</strong> {data.user.emailVerified ? 'Yes' : 'No'}</p>
-						<p>
-							<strong>Member since:</strong>
-							{new Date(data.user.createdAt).toLocaleDateString()}
-						</p>
-					</div>
-				</CardContent>
-			</Card>
+<svelte:head>
+	<title>Dashboard · {APP_NAME}</title>
+</svelte:head>
 
-			<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-				<Card>
-					<CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
-						<CardTitle class="text-sm font-medium">Total Users</CardTitle>
-					</CardHeader>
-					<CardContent>
-						<div class="text-2xl font-bold">1</div>
-						<p class="text-xs text-muted-foreground">You're the first user!</p>
-					</CardContent>
-				</Card>
-
-				<Card>
-					<CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
-						<CardTitle class="text-sm font-medium">Active Sessions</CardTitle>
-					</CardHeader>
-					<CardContent>
-						<div class="text-2xl font-bold">1</div>
-						<p class="text-xs text-muted-foreground">Current session</p>
-					</CardContent>
-				</Card>
-
-				<Card>
-					<CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
-						<CardTitle class="text-sm font-medium">Database</CardTitle>
-					</CardHeader>
-					<CardContent>
-						<div class="text-2xl font-bold">Turso</div>
-						<p class="text-xs text-muted-foreground">Connected & ready</p>
-					</CardContent>
-				</Card>
-
-				<Card>
-					<CardHeader class="flex flex-row items-center justify-between space-y-0 pb-2">
-						<CardTitle class="text-sm font-medium">Framework</CardTitle>
-					</CardHeader>
-					<CardContent>
-						<div class="text-2xl font-bold">SvelteKit</div>
-						<p class="text-xs text-muted-foreground">v5 + Tailwind 4</p>
-					</CardContent>
-				</Card>
-			</div>
-
-			<Card>
-				<CardHeader>
-					<CardTitle>Template Features</CardTitle>
-					<CardDescription>Production-ready features included in this template</CardDescription>
-				</CardHeader>
-				<CardContent>
-					<div class="grid gap-4 md:grid-cols-2">
-						<div class="space-y-2">
-							<h4 class="font-medium">Authentication</h4>
-							<ul class="space-y-1 text-sm text-muted-foreground">
-								<li>• GitHub OAuth integration</li>
-								<li>• Better Auth framework</li>
-								<li>• Session management</li>
-								<li>• Route protection</li>
-								<li>• Social authentication</li>
-							</ul>
-						</div>
-						<div class="space-y-2">
-							<h4 class="font-medium">Tech Stack</h4>
-							<ul class="space-y-1 text-sm text-muted-foreground">
-								<li>• SvelteKit framework</li>
-								<li>• Tailwind CSS 4</li>
-								<li>• shadcn-svelte components</li>
-								<li>• Drizzle ORM with Turso</li>
-							</ul>
-						</div>
-					</div>
-				</CardContent>
-			</Card>
+<div class="container mx-auto space-y-6 px-4 py-8 sm:px-6 lg:px-8">
+	<div class="flex items-center gap-4">
+		{#if data.user.image}
+			<img src={data.user.image} alt="" class="size-14 rounded-full border" />
+		{/if}
+		<div>
+			<h1 class="text-2xl font-bold tracking-tight">Welcome, {data.user.name}</h1>
+			<p class="text-muted-foreground">{data.user.email}</p>
 		</div>
-	</main>
+	</div>
+
+	<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+		{#each stats as stat (stat.label)}
+			<Card.Root>
+				<Card.Header class="pb-2">
+					<Card.Description>{stat.label}</Card.Description>
+					<Card.Title class="text-2xl">{stat.value}</Card.Title>
+				</Card.Header>
+				<Card.Content>
+					<p class="text-xs text-muted-foreground">{stat.hint}</p>
+				</Card.Content>
+			</Card.Root>
+		{/each}
+	</div>
+
+	<Card.Root>
+		<Card.Header>
+			<Card.Title>Your recent sessions</Card.Title>
+			<Card.Description>
+				Loaded in <code>+page.server.ts</code> with a typed Drizzle query. Every value here comes from
+				the database.
+			</Card.Description>
+		</Card.Header>
+		<Card.Content>
+			<ul class="divide-y">
+				{#each data.recentSessions as s (s.id)}
+					<li class="flex flex-wrap items-center justify-between gap-2 py-3 text-sm">
+						<div class="flex items-center gap-2">
+							<span class="font-medium">{describeAgent(s.userAgent)}</span>
+							{#if s.id === data.currentSessionId}
+								<Badge variant="secondary">This device</Badge>
+							{/if}
+						</div>
+						<span class="text-muted-foreground">
+							Signed in {dateTimeFormat.format(s.createdAt)} · expires
+							{dateFormat.format(s.expiresAt)}
+						</span>
+					</li>
+				{/each}
+			</ul>
+		</Card.Content>
+	</Card.Root>
 </div>

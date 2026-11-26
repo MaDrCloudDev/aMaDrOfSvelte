@@ -1,127 +1,88 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
-	import {
-		Card,
-		CardContent,
-		CardDescription,
-		CardHeader,
-		CardTitle
-	} from '$lib/components/ui/card';
-	import { handleGitHubSignIn } from '$lib/auth-utils';
-	import GitHubIcon from '$lib/components/icons/GitHubIcon.svelte';
-	import SpinnerIcon from '$lib/components/icons/SpinnerIcon.svelte';
+	import { handleGitHubSignIn } from '#lib/auth-utils.ts';
+	import GitHubIcon from '#lib/components/icons/GitHubIcon.svelte';
+	import SpinnerIcon from '#lib/components/icons/SpinnerIcon.svelte';
+	import { Button } from '#lib/components/ui/button/index.ts';
+	import * as Card from '#lib/components/ui/card/index.ts';
+	import { APP_NAME, GITHUB_REPO_URL, ROUTES } from '#lib/constants.ts';
 
-	let authLoading = $state(false);
+	let loading = $state(false);
 
-	async function handleSignInClick() {
-		if (authLoading) return;
-		authLoading = true;
-		try {
-			await handleGitHubSignIn();
-		} catch (error) {
-			console.error('Sign in error:', error);
-		} finally {
-			authLoading = false;
-		}
+	async function signIn() {
+		loading = true;
+		await handleGitHubSignIn();
+		loading = false;
 	}
+
+	const features = [
+		{
+			title: 'Authentication',
+			body: 'Better Auth with GitHub OAuth, cookie sessions, and server-side route guards.'
+		},
+		{
+			title: 'Database',
+			body: 'Drizzle ORM on libSQL: a local SQLite file in dev, Turso in production. Same code.'
+		},
+		{
+			title: 'UI kit',
+			body: 'shadcn-svelte on Tailwind CSS 4 with light/dark themes and no flash on load.'
+		},
+		{
+			title: 'SvelteKit 3',
+			body: 'Svelte 5 runes, validated env vars in src/env.ts, and #lib subpath imports.'
+		},
+		{
+			title: 'Offline-ready',
+			body: 'A native SvelteKit service worker precaches the app shell, plus an install prompt.'
+		},
+		{
+			title: 'Tooling',
+			body: 'Bun, TypeScript 6, Vitest, ESLint, Prettier, and a CI workflow that runs them all.'
+		}
+	];
 </script>
 
-<div class="min-h-screen bg-background">
-	<div class="container mx-auto px-4 pt-8 pb-16 sm:px-6 lg:px-8">
-		<div class="space-y-8 text-center">
-			<div class="space-y-6">
-				<div class="flex justify-center">
-					<img
-						src="/madr-logo.png"
-						alt="aMaDrOfSvelte Logo"
-						class="h-20 w-20 rounded-2xl object-contain"
-					/>
-				</div>
-				<h1 class="text-4xl font-bold tracking-tight sm:text-6xl">aMaDrOfSvelte</h1>
-				<p class="mx-auto max-w-3xl text-xl text-muted-foreground">
-					SvelteKit 2 + Svelte 5 runes starter with Better Auth (GitHub OAuth), Drizzle ORM,
-					Turso/libSQL, Tailwind CSS 4, and shadcn-svelte components.
-				</p>
-			</div>
-			<div class="flex flex-col justify-center gap-4 sm:flex-row">
-				<Button onclick={handleSignInClick} disabled={authLoading}>
-					{#if authLoading}
-						<SpinnerIcon class="mr-2 h-4 w-4 animate-spin" />
-						Processing...
-					{:else}
-						Sign in with GitHub
-						<GitHubIcon class="h-4 w-4" />
-					{/if}
-				</Button>
-			</div>
-		</div>
-	</div>
+<svelte:head>
+	<title>{APP_NAME}: a full-stack SvelteKit starter</title>
+</svelte:head>
 
-	<div class="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
-		<div class="mb-12 space-y-4 text-center">
-			<h2 class="text-3xl font-bold">What's included</h2>
-		</div>
-		<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-			<Card>
-				<CardHeader>
-					<CardTitle>Authentication</CardTitle>
-				</CardHeader>
-				<CardContent>
-					<CardDescription>
-						Better Auth with GitHub OAuth, session cookies, and server-side route protection.
-					</CardDescription>
-				</CardContent>
-			</Card>
-			<Card>
-				<CardHeader>
-					<CardTitle>Database + ORM</CardTitle>
-				</CardHeader>
-				<CardContent>
-					<CardDescription>
-						Turso/libSQL with Drizzle schema + typed queries for end-to-end TypeScript flow.
-					</CardDescription>
-				</CardContent>
-			</Card>
-			<Card>
-				<CardHeader>
-					<CardTitle>UI System</CardTitle>
-				</CardHeader>
-				<CardContent>
-					<CardDescription>
-						Tailwind CSS 4 tokens with shadcn-svelte primitives ready for app-level composition.
-					</CardDescription>
-				</CardContent>
-			</Card>
-			<Card>
-				<CardHeader>
-					<CardTitle>SvelteKit Architecture</CardTitle>
-				</CardHeader>
-				<CardContent>
-					<CardDescription>
-						SvelteKit 2 routing and server loads using Svelte 5 runes across interactive pages.
-					</CardDescription>
-				</CardContent>
-			</Card>
-			<Card>
-				<CardHeader>
-					<CardTitle>PWA Baseline</CardTitle>
-				</CardHeader>
-				<CardContent>
-					<CardDescription>
-						Vite PWA + Workbox setup with install prompt and offline-ready asset caching.
-					</CardDescription>
-				</CardContent>
-			</Card>
-			<Card>
-				<CardHeader>
-					<CardTitle>DX Tooling</CardTitle>
-				</CardHeader>
-				<CardContent>
-					<CardDescription>
-						Bun scripts for check, lint, test, build, and Drizzle migration workflows.
-					</CardDescription>
-				</CardContent>
-			</Card>
-		</div>
+<section class="container mx-auto space-y-8 px-4 pt-16 pb-12 text-center sm:px-6 lg:px-8">
+	<img src="/madr-logo.png" alt="" class="mx-auto size-20 rounded-2xl object-contain" />
+	<div class="space-y-4">
+		<h1 class="text-4xl font-bold tracking-tight sm:text-6xl">{APP_NAME}</h1>
+		<p class="mx-auto max-w-2xl text-xl text-muted-foreground">
+			A small, decisive full-stack SvelteKit starter. Auth, database and UI already work together,
+			so you start on your actual idea.
+		</p>
 	</div>
-</div>
+	<div class="flex flex-col justify-center gap-3 sm:flex-row">
+		<Button size="lg" onclick={signIn} disabled={loading} aria-busy={loading}>
+			{#if loading}
+				<SpinnerIcon class="size-4 animate-spin" />
+				Redirecting…
+			{:else}
+				<GitHubIcon class="size-4" />
+				Try the demo sign-in
+			{/if}
+		</Button>
+		<Button size="lg" variant="outline" href={ROUTES.COMPONENTS}>Browse components</Button>
+		<Button size="lg" variant="ghost" href={GITHUB_REPO_URL} target="_blank" rel="noopener">
+			View source
+			<span class="sr-only">(opens in a new tab)</span>
+		</Button>
+	</div>
+</section>
+
+<section class="container mx-auto px-4 pb-16 sm:px-6 lg:px-8">
+	<h2 class="mb-8 text-center text-3xl font-bold">What's included</h2>
+	<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+		{#each features as feature (feature.title)}
+			<Card.Root>
+				<Card.Header>
+					<Card.Title>{feature.title}</Card.Title>
+					<Card.Description>{feature.body}</Card.Description>
+				</Card.Header>
+			</Card.Root>
+		{/each}
+	</div>
+</section>

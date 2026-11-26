@@ -1,22 +1,29 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
+	import { Button } from '#lib/components/ui/button/index.ts';
 	import {
 		Card,
 		CardContent,
 		CardDescription,
 		CardHeader,
 		CardTitle
-	} from '$lib/components/ui/card';
-	import { Input } from '$lib/components/ui/input';
-	import { Label } from '$lib/components/ui/label';
-	import { Alert, AlertDescription } from '$lib/components/ui/alert';
-	import { Separator } from '$lib/components/ui/separator';
-	import { Switch } from '$lib/components/ui/switch';
-	import { Select, SelectContent, SelectItem, SelectTrigger } from '$lib/components/ui/select';
-	import { Textarea } from '$lib/components/ui/textarea';
-	import { Badge } from '$lib/components/ui/badge';
-	import { Tabs, TabsContent, TabsList, TabsTrigger } from '$lib/components/ui/tabs';
-	import { SHADCN_SVELTE_URL } from '$lib/constants';
+	} from '#lib/components/ui/card/index.ts';
+	import { Input } from '#lib/components/ui/input/index.ts';
+	import { Label } from '#lib/components/ui/label/index.ts';
+	import { Alert, AlertDescription } from '#lib/components/ui/alert/index.ts';
+	import { Separator } from '#lib/components/ui/separator/index.ts';
+	import { Switch } from '#lib/components/ui/switch/index.ts';
+	import {
+		Select,
+		SelectContent,
+		SelectItem,
+		SelectTrigger
+	} from '#lib/components/ui/select/index.ts';
+	import { Textarea } from '#lib/components/ui/textarea/index.ts';
+	import { Badge } from '#lib/components/ui/badge/index.ts';
+	import { Tabs, TabsContent, TabsList, TabsTrigger } from '#lib/components/ui/tabs/index.ts';
+	import * as Dialog from '#lib/components/ui/dialog/index.ts';
+	import { toast } from 'svelte-sonner';
+	import { APP_NAME, SHADCN_SVELTE_URL } from '#lib/constants.ts';
 
 	const planLabels = {
 		starter: 'Starter',
@@ -37,11 +44,23 @@
 	);
 	let notificationsEnabled = $state(true);
 	let marketingEmails = $state(false);
-	let billingPlan = $state<Array<keyof typeof planLabels>>(['pro']);
-	let priority = $state<Array<keyof typeof priorityLabels>>(['normal']);
+	let billingPlan = $state<keyof typeof planLabels>('pro');
+	let priority = $state<keyof typeof priorityLabels>('normal');
+	let dialogOpen = $state(false);
+
+	function saveProfile() {
+		dialogOpen = false;
+		toast.success('Profile saved', {
+			description: `${nameValue} · ${planLabels[billingPlan]} plan`
+		});
+	}
 </script>
 
-<div class="min-h-screen bg-background">
+<svelte:head>
+	<title>Components · {APP_NAME}</title>
+</svelte:head>
+
+<div>
 	<div class="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
 		<div class="mb-8 space-y-3">
 			<h1 class="text-4xl font-bold text-foreground">Component Playground</h1>
@@ -52,16 +71,20 @@
 					class="underline"
 					aria-label="Install more components from shadcn-svelte"
 					target="_blank"
-					href={SHADCN_SVELTE_URL}>shadcn-svelte</a
-				>.
+					rel="external noopener"
+					href={SHADCN_SVELTE_URL}
+				>
+					shadcn-svelte
+				</a>.
 			</p>
 		</div>
 
 		<Tabs value="forms" class="space-y-6">
-			<TabsList class="grid w-full grid-cols-3 md:max-w-xl">
+			<TabsList class="grid w-full grid-cols-4 md:max-w-xl">
 				<TabsTrigger value="forms">Forms</TabsTrigger>
 				<TabsTrigger value="feedback">Feedback</TabsTrigger>
 				<TabsTrigger value="layout">Layout</TabsTrigger>
+				<TabsTrigger value="overlays">Overlays</TabsTrigger>
 			</TabsList>
 
 			<TabsContent value="forms" class="space-y-6">
@@ -104,28 +127,28 @@
 						<CardContent class="space-y-5">
 							<div class="flex items-center justify-between rounded-md border p-3">
 								<div>
-									<p class="text-sm font-medium">Product Updates</p>
+									<p id="updates-label" class="text-sm font-medium">Product Updates</p>
 									<p class="text-xs text-muted-foreground">
 										Enable release and changelog notifications.
 									</p>
 								</div>
-								<Switch bind:checked={notificationsEnabled} />
+								<Switch bind:checked={notificationsEnabled} aria-labelledby="updates-label" />
 							</div>
 							<div class="flex items-center justify-between rounded-md border p-3">
 								<div>
-									<p class="text-sm font-medium">Marketing Emails</p>
+									<p id="marketing-label" class="text-sm font-medium">Marketing Emails</p>
 									<p class="text-xs text-muted-foreground">
 										Allow occasional product and event announcements.
 									</p>
 								</div>
-								<Switch bind:checked={marketingEmails} />
+								<Switch bind:checked={marketingEmails} aria-labelledby="marketing-label" />
 							</div>
 
 							<div class="space-y-2">
 								<Label for="plan-demo">Billing Plan</Label>
-								<Select bind:value={billingPlan} type="multiple">
+								<Select bind:value={billingPlan} type="single">
 									<SelectTrigger id="plan-demo" class="w-full">
-										{planLabels[billingPlan[0] ?? 'pro']}
+										{planLabels[billingPlan]}
 									</SelectTrigger>
 									<SelectContent>
 										<SelectItem value="starter">Starter</SelectItem>
@@ -137,9 +160,9 @@
 
 							<div class="space-y-2">
 								<Label for="priority-demo">Support Priority</Label>
-								<Select bind:value={priority} type="multiple">
+								<Select bind:value={priority} type="single">
 									<SelectTrigger id="priority-demo" class="w-full">
-										{priorityLabels[priority[0] ?? 'normal']}
+										{priorityLabels[priority]}
 									</SelectTrigger>
 									<SelectContent>
 										<SelectItem value="normal">Normal</SelectItem>
@@ -167,11 +190,11 @@
 								<Badge>Active</Badge>
 								<Badge variant="secondary">Queued</Badge>
 								<Badge variant="outline">Draft</Badge>
-								<Badge class="bg-green-600 text-white hover:bg-green-600">Healthy</Badge>
+								<Badge class="bg-green-700 text-white hover:bg-green-700">Healthy</Badge>
 								<Badge variant="destructive">Failed</Badge>
 							</div>
 							<p class="text-sm text-muted-foreground">
-								Current profile plan: <strong>{planLabels[billingPlan[0] ?? 'pro']}</strong>
+								Current profile plan: <strong>{planLabels[billingPlan]}</strong>
 							</p>
 						</CardContent>
 					</Card>
@@ -251,6 +274,74 @@
 						</div>
 					</CardContent>
 				</Card>
+			</TabsContent>
+			<TabsContent value="overlays" class="space-y-6">
+				<div class="grid gap-6 lg:grid-cols-2">
+					<Card>
+						<CardHeader>
+							<CardTitle>Dialog</CardTitle>
+							<CardDescription>
+								Accessible modal with focus trapping, Escape to close, and a confirm action.
+							</CardDescription>
+						</CardHeader>
+						<CardContent>
+							<Dialog.Root bind:open={dialogOpen}>
+								<Dialog.Trigger>
+									{#snippet child({ props })}
+										<Button {...props}>Review profile</Button>
+									{/snippet}
+								</Dialog.Trigger>
+								<Dialog.Content>
+									<Dialog.Header>
+										<Dialog.Title>Save profile?</Dialog.Title>
+										<Dialog.Description>
+											Values come from the Forms tab, so edit them there and reopen this.
+										</Dialog.Description>
+									</Dialog.Header>
+									<dl class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm">
+										<dt class="text-muted-foreground">Name</dt>
+										<dd>{nameValue}</dd>
+										<dt class="text-muted-foreground">Email</dt>
+										<dd>{emailValue}</dd>
+										<dt class="text-muted-foreground">Plan</dt>
+										<dd>{planLabels[billingPlan]}</dd>
+									</dl>
+									<Dialog.Footer>
+										<Button variant="outline" onclick={() => (dialogOpen = false)}>Cancel</Button>
+										<Button onclick={saveProfile}>Save</Button>
+									</Dialog.Footer>
+								</Dialog.Content>
+							</Dialog.Root>
+						</CardContent>
+					</Card>
+
+					<Card>
+						<CardHeader>
+							<CardTitle>Toasts</CardTitle>
+							<CardDescription>
+								Sonner notifications, used by the app's sign-in and sign-out flows.
+							</CardDescription>
+						</CardHeader>
+						<CardContent class="flex flex-wrap gap-2">
+							<Button variant="outline" onclick={() => toast('Changes queued')}>Default</Button>
+							<Button variant="outline" onclick={() => toast.success('Deployed to production')}>
+								Success
+							</Button>
+							<Button variant="outline" onclick={() => toast.error('Build failed')}>Error</Button>
+							<Button
+								variant="outline"
+								onclick={() =>
+									toast.promise(new Promise((resolve) => setTimeout(resolve, 1500)), {
+										loading: 'Running migrations…',
+										success: 'Migrations applied',
+										error: 'Migration failed'
+									})}
+							>
+								Promise
+							</Button>
+						</CardContent>
+					</Card>
+				</div>
 			</TabsContent>
 		</Tabs>
 	</div>

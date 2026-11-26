@@ -1,32 +1,23 @@
-import devtoolsJson from 'vite-plugin-devtools-json';
-import tailwindcss from '@tailwindcss/vite';
+import adapter from '@sveltejs/adapter-vercel';
 import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
-import { VitePWA } from 'vite-plugin-pwa';
+import tailwindcss from '@tailwindcss/vite';
+import { svelteTesting } from '@testing-library/svelte/vite';
+import devtoolsJson from 'vite-plugin-devtools-json';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
 	plugins: [
 		tailwindcss(),
-		sveltekit(),
+		sveltekit({
+			// any adapter works: https://svelte.dev/docs/kit/adapters
+			adapter: adapter()
+		}),
 		devtoolsJson(),
-		VitePWA({
-			registerType: 'autoUpdate',
-			devOptions: {
-				enabled: process.env.NODE_ENV === 'development',
-				type: 'module',
-				navigateFallback: '/'
-			},
-			filename: 'service-worker.js',
-			workbox: {
-				globPatterns: ['**/*.{js,css,html,ico,png,svg,webp}']
-			},
-			manifest: false
-		})
+		svelteTesting()
 	],
 	test: {
-		include: ['src/**/*.{test,spec}.{js,ts}'],
+		include: ['tests/**/*.{test,spec}.{js,ts}'],
 		environment: 'jsdom',
-		setupFiles: ['src/test-setup.ts'],
-		globals: true
+		setupFiles: ['tests/setup.ts']
 	}
 });

@@ -1,47 +1,34 @@
-import { signIn, signOut } from '$lib/auth-client';
 import { toast } from 'svelte-sonner';
-import { goto, invalidateAll } from '$app/navigation';
-import { ROUTES } from './constants';
+import { goto, refreshAll } from '$app/navigation';
+import { resolve } from '$app/paths';
+import { signIn, signOut } from '#lib/auth-client.ts';
+import { ROUTES } from '#lib/constants.ts';
 
-export async function handleSignOut(): Promise<void> {
-	try {
-		await signOut({
-			fetchOptions: {
-				onSuccess: async () => {
-					toast.success('Successfully signed out!');
-					await invalidateAll();
-					goto(ROUTES.HOME);
-				}
-			}
-		});
-	} catch (error) {
-		console.error('Sign out error:', error);
-		const message = error instanceof Error ? error.message : 'Failed to sign out';
-		toast.error(`Sign out failed: ${message}`);
-	}
+function errorMessage(error: unknown, fallback: string): string {
+	return error instanceof Error ? error.message : fallback;
 }
 
 export async function handleGitHubSignIn(): Promise<void> {
 	try {
-		await signIn.social({
+		const { error } = await signIn.social({
 			provider: 'github',
-			callbackURL: ROUTES.DASHBOARD
+			callbackURL: ROUTES.DASHBOARD,
+			errorCallbackURL: ROUTES.AUTH
 		});
+		if (error) throw new Error(error.message ?? 'Failed to sign in');
 	} catch (error) {
-		console.error('GitHub sign-in error:', error);
-		const message = error instanceof Error ? error.message : 'Failed to sign in';
-		toast.error(`Sign in failed: ${message}`);
+		toast.error(`Sign in failed: ${errorMessage(error, 'Failed to sign in')}`);
 	}
 }
 
-export function navigateToProfile(): void {
-	goto(ROUTES.DASHBOARD);
-}
-
-export function navigateToSettings(): void {
-	goto(ROUTES.SETTINGS);
-}
-
-export function openGitHubRepo(): void {
-	window.open(ROUTES.GITHUB_REPO, '_blank', 'noopener,noreferrer');
+export async function handleSignOut(): Promise<void> {
+	try {
+		const { error } = await signOut();
+		if (error) throw new Error(error.message ?? 'Failed to sign out');
+		toast.success('Signed out');
+		await refreshAll();
+		await goto(resolve(ROUTES.HOME));
+	} catch (error) {
+		toast.error(`Sign out failed: ${errorMessage(error, 'Failed to sign out')}`);
+	}
 }
